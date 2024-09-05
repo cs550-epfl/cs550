@@ -8,7 +8,7 @@ This  repository is the homepage of the course Formal Verification (autumn 2023)
 
 - Professor: [Viktor Kunčak](https://people.epfl.ch/viktor.kuncak)
 - Teaching Assistant: [Simon Guilloud](https://people.epfl.ch/simon.guilloud)
-- Student Assistants: [Andrea Gilot](https://people.epfl.ch/andrea.gilot), [Valentin Aebi](https://people.epfl.ch/valentin.aebi/), [Noé De Santo](https://people.epfl.ch/noe.desanto)
+- Student Assistant: [Dario Halilovic](https://people.epfl.ch/dario.halilovic)
 
 ### Grading
 
@@ -32,7 +32,7 @@ The course has two aspects:
 - learning the practice of formal verification - how to use tools to construct verified software
 - understanding the principles behind formal verification and the ways in which verification tools work
 
-The course will follow a similar structure to the [2022 edition](https://gitlab.epfl.ch/lara/cs550/-/tree/2022?ref_type=heads). Project can be a case study in developing a verified piece of software, an implementation of verification tool functionality, or a theoretical result about verification, constraint solving or theorem proving. Students present their projects with a written report as well as by a live presentation of project results, answering our questions.
+The course will follow a similar structure to the [2023 edition](https://gitlab.epfl.ch/lara/cs550/-/tree/2023?ref_type=heads). Project can be a case study in developing a verified piece of software, an implementation of verification tool functionality, or a theoretical result about verification, constraint solving or theorem proving. Students present their projects with a written report as well as by a live presentation of project results, answering our questions.
 
 Note that slides can be found **underneath each lecture video** on switch tube linkes below. 
 
@@ -44,9 +44,11 @@ Note that slides can be found **underneath each lecture video** on switch tube l
 
 In the reading list below, HandAR-Ch.2 means Chapter 2 in the Handbook of Practical Logic and Automated Reasoning Above, whereas HandMC-Ch.9 means Chapter 9 of the Handbook of Model Checking, etc.
 
+## NOTE
 
+The links to videos are being updated. In the meantime, please [select this channel](https://mediaspace.epfl.ch/channel/CS-550+Formal+Verification/30542) and then sort the videos alphabetically by name.
 
-## COURSE OUTLINE 
+## COURSE OUTLINE: UNDER CONSTRUCTION
 
 
 | Week | Day | Date       | Time  | Room   | Topic                           | Videos & Slides              |
@@ -92,13 +94,13 @@ In the reading list below, HandAR-Ch.2 means Chapter 2 in the Handbook of Practi
 |       | Fri | 08.12.2023 | 13:15 | INR219 | Lecture | [SMT Solvers](https://tube.switch.ch/videos/CDDwI5RZD0), [Tableau-Based Theorem Proving](lectures/Lecture_on_Tableau-1.pdf) (by Simon), [example tableaux proofs](https://www.umsu.de/trees/)
 | 13    | Thu | 14.12.2023 | 15:15 | GRA330 | Lecture | [Hardware Verification Lecture](lectures/ThomasBourgeat-HardwareVerification.pdf) by [Prof. Thomas Bourgeat](https://people.epfl.ch/thomas.bourgeat) |
 |       |     |            | 17:15 | GRA330 | Labs |  |
-|       | Fri | 15.12.2023 | 13:00 | INR219 | Project Presentations | VIDIGUIERA Manuel, CONTOVOUNESIOS Basil, POIROUX Auguste |
-|       |     |            | 13:30 | INR219 | Project Presentations | ILIESCU Valentina-Florentina, WINDLER Leon, LAZAR David Leonardo| 
-| 14    | Thu | 21.12.2023 | 15:15 | GRA330 | Project Presentations | GILLIARD Patrick, SCHNEUWLY Victor, PIVETEAU Alexandre |
-|       |     |            | 15:45 | GRA330 | Project Presentations | HALILOVIC Dario, HERNANDEZ CANO Alejandro |
-|       |     |            | 16:15 | GRA330 | Project Presentations | RAZGALLAH Hédi, ROVELLI Gianmaria, KLEYMANN David |
-|       |     |            | 16:45 | GRA330 | Project Presentations | KAPPELER Kelvin, JOLIDON Bastien, KALLAND Magnus | 
-|       | Fri | 22.12.2023 | 13:05 | INR219 | Project Presentations | REMMAL Hamza, FLESSELLE Eugene | 
-|       |     |            | 13:35 | INR219 | Project Presentations | ZHAO Yaoyu, FALTINGS Victor, BARMETTLER Lars |  
-|       |     |            | 14:05 | INR219 | Project Presentations | WOJNAROWSKI Marcin, BARTRINA Guillem, SAINAS Franco |  
-|       |     |            | 14:35 | INR219 | Project Presentations | DE CASTELNAU Julien, BELENTEPE Cemalettin Cem | 
+|       | Fri | 15.12.2023 | 13:00 | INR219 | Project Presentations |  |
+|       |     |            | 13:30 | INR219 | Project Presentations |  | 
+| 14    | Thu | 21.12.2023 | 15:15 | GRA330 | Project Presentations |  |
+|       |     |            | 15:45 | GRA330 | Project Presentations |  |
+|       |     |            | 16:15 | GRA330 | Project Presentations |  |
+|       |     |            | 16:45 | GRA330 | Project Presentations |  | 
+|       | Fri | 22.12.2023 | 13:05 | INR219 | Project Presentations |  | 
+|       |     |            | 13:35 | INR219 | Project Presentations |  |  
+|       |     |            | 14:05 | INR219 | Project Presentations |  |  
+|       |     |            | 14:35 | INR219 | Project Presentations |  | 
