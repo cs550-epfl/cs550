@@ -1,5 +1,8 @@
 # EPFL CS550 - Formal Verification
 
+The links to videos and other material are being updated. In the meantime, please [select this channel](https://mediaspace.epfl.ch/channel/CS-550+Formal+Verification/30542) and then sort the videos alphabetically by name.
+
+
 [Moodle](https://moodle.epfl.ch/course/view.php?id=13051), [Coursebook](https://edu.epfl.ch/coursebook/en/formal-verification-CS-550?cb_cycle=bama_cyclemaster&cb_section=in)
 
 This  repository is the homepage of the course Formal Verification (autumn 2023) and hosts the material necesary for the labs.
