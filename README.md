@@ -19,7 +19,7 @@ The grade is based on the written mid-term, as well as code, documentation, and 
 
 The types of graded materials will include:
 
-- 40% Late mid-term written exam: 23 November 15:15-18:00 (see [this folder with past exams](past-exams/))
+- 40% Late mid-term written exam (November) (see [this folder with past exams](past-exams/))
 - 20% total: four-five labs, to be done in groups, each group working independently on same projects
 - 40% final project to be done in groups, you will choose a topic with our agreement
     - 10% Written presentation of a background paper 
@@ -47,10 +47,6 @@ Note that slides can be found **underneath each lecture video** on switch tube l
 
 In the reading list below, HandAR-Ch.2 means Chapter 2 in the Handbook of Practical Logic and Automated Reasoning Above, whereas HandMC-Ch.9 means Chapter 9 of the Handbook of Model Checking, etc.
 
-## NOTE
-
-To see the material, please visit https://mediaspace.epfl.ch , log in with your EPFL credentials and 
-[select this channel](https://mediaspace.epfl.ch/channel/CS-550+Formal+Verification/30542). Slides and listings are attached underneath the videos.
 
 ## COURSE OUTLINE 
 
