@@ -49,61 +49,13 @@ In the reading list below, HandAR-Ch.2 means Chapter 2 in the Handbook of Practi
 
 ## NOTE
 
-The links to videos are being updated. In the meantime, please [select this channel](https://mediaspace.epfl.ch/channel/CS-550+Formal+Verification/30542) and then sort the videos alphabetically by name.
+To see the material, please visit https://mediaspace.epfl.ch , log in with your EPFL credentials and 
+[select this channel](https://mediaspace.epfl.ch/channel/CS-550+Formal+Verification/30542).
 
 ## COURSE OUTLINE: UNDER CONSTRUCTION
 
 
 | Week | Day | Date       | Time  | Room   | Topic                           | Videos & Slides              |
 | :--  | :-- | :--        | :--   | :--    | :--                             | :--                          |
-| 1    | Thu | 21.09.2023 | 15:15 | [GRA330](https://plan.epfl.ch/?room==GR%20A3%2030) | Lecture 1                       | [Intro to FV](https://tube.switch.ch/videos/56b40f7e), [Intro to Stainless](https://tube.switch.ch/videos/c7d203e8), [Auxiliary Assertions](https://tube.switch.ch/videos/44e8a0dc), [Unfolding](https://tube.switch.ch/videos/ada8a42c), [Disasters, Successes, and Inductive Invariants](https://tube.switch.ch/videos/cca7c3f8) |
+| 1    | Thu | 21.09.2023 | 15:15 | [GRA330](https://plan.epfl.ch/?room==GR%20A3%2030) | Lecture 1                       | [Intro to FV](https://mediaspace.epfl.ch/media/01-01%2C+What+is+Formal+VerificationF/0_3z52dv8y/30542), [Intro to Stainless](https://mediaspace.epfl.ch/media/01-02%2C+First+Steps+with+Stainless/0_tghlsgep/30542), [Auxiliary Assertions](https://mediaspace.epfl.ch/media/01-03%2C+Auxiliary+Assertions+in+Stainless/0_54yx91xi/30542), [Unfolding](https://mediaspace.epfl.ch/media/01-04%2C+Unfolding+recursive+functions+in+Stainless/0_4byxmv9i/30542), [Disasters, Successes, and Inductive Invariants](https://mediaspace.epfl.ch/media/01-05%2C+Disasters%2C+Successes%2C+and+Inductive+Invariants/0_fei98b8f) |
 |      |     |           |   |   | Follow:                       | [Stainless ASPLOS'22 Tutorial](https://epfl-lara.github.io/asplos2022tutorial/)  |
-|      |     |           | 17:15 | GRA330 | Lecture 2                       | [Dispenser Example](https://tube.switch.ch/videos/ded227dd), [Finite Systems Expressed with Formulas](https://tube.switch.ch/videos/088d2823) |
-|      |     |            |   |   | Reading:                       | HandMC-Ch.10  |
-|      | Fri | 22.09.2023 | 13:15 | [INR219](https://plan.epfl.ch/?room==INR%20219) | Lecture 3                       | [What is a Formal Proof?](https://tube.switch.ch/videos/4a211e7a) and [Propositional Resolution](https://tube.switch.ch/videos/280bbc4c) |
-|      |     |            |   |   | Reading:                       | CalComp-Ch.1 ∨ HandAR-Ch.2 |
-| 2    | Thu | 28.09.2023 | 15:15 | GRA330 | [Exercise 1](exercises/Exercises1/ex1.pdf) | Propositional logic
-|      |     |            | 17:15 | GRA330 | [Lab 1](labs/lab1/) | Sublists in Stainless
-|      | Fri | 29.09.2023 | 13:15 | [INR219](https://plan.epfl.ch/?room==INR%20219) | Lecture 4                       | [Propositional Resolution](https://tube.switch.ch/videos/280bbc4c) up to and including equisatisfiability |
-| 3    | Thu | 5.10.2023 | 15:15 | GRA330 | Lecture 5 | [Propositional Resolution](https://tube.switch.ch/videos/280bbc4c): Tseytin's transformation and SAT solving. [Automating First-Order Logic using Resolution](https://tube.switch.ch/videos/60fb9217) | 
-|      |     |           | 17:15 | GRA330 | [Lab 2](labs/lab2) | A communication protocol in Stainless 
-|      | Fri | 6.10.2023 | 13:15 | [INR219](https://plan.epfl.ch/?room==INR%20219) | [Exercise 2](exercises/Exercises2/)         | Traces, SAT, models |
-| 4    | Thu | 12.10.2023 | 15:15 | GRA330 | Lecture 6 | Continue [Automating First-Order Logic using Resolution](https://tube.switch.ch/videos/60fb9217). [Term Models for First-Order Logic](https://mediaspace.epfl.ch/media/06-03+Term+Models+for+First-Order+Logic/0_jnuljf9n/30542)
-|      |     |            | 17:15 | GRA330 | [Lab 3](labs/lab3/) | Resolution proof checker (with Stainless) |
-|      | Fri | 13.10.2023| 13:15 | INR219 | [Exercise 3](exercises/Exercises3/) | Propositional logic. Transition systems. Models |
-| 5    | Thu | 19.10.2023 | 15:15 | GRA330 | Lecture 7 | [Converting Imperative Programs to Formulas](https://tube.switch.ch/videos/79219264), [Hoare Logic, Strongest Postcondition, Weakest Precondition](https://tube.switch.ch/videos/3fc107a7) |  
-|      |     |            | 17:15 | GRA330 | [Lab 3](labs/lab3/) | Continue resolution proof checker |
-|      | Fri | 20.10.2023 | 13:15 | INR219 | Lecture 8 | [Presburger Arithmetic 1](https://tube.switch.ch/videos/535e9dea), [Presburger Airhtmetic 2](https://tube.switch.ch/videos/ceecf2f6) |
-| 6    | Thu | 26.10.2023 | 15:15 | GRA330 | [Exercises 4](exercises/Exercises4) |  |  
-|      |     |            | 17:15 | GRA330 | [Lab 4](labs/lab4) | [First Lisa Lab](labs/lab4) |
-|      | Fri | 27.10.2023 | 13:15 | INR219 | Lecture 9 | [Abstract Interpretation Idea](https://tube.switch.ch/videos/cOvvbWjTpU), [Lattices](https://tube.switch.ch/videos/Zj3TNfknHG) |
-| 7    | Thu | 2.11.2023 | 15:15 | GRA330 | [Exercises 5](exercises/Exercises5) |  |  
-|      |     |           | 17:15 | GRA330 | [Lab 5](labs/lab5) |  |
-|      | Fri | 3.11.2023 | 13:15 | INR219 | Lecture 10 |  [Fixed Point Theorem](https://tube.switch.ch/videos/dQ5vvteGhz), [Omega Continuity](https://tube.switch.ch/videos/DkObtnApKb) (only until AI recipe) |
-|      | Sun | 5.11.2023 |       |        |            | [Deadline to submit the topic of your project and the background paper you will review](https://gitlab.epfl.ch/lara/cs550/-/blob/main/project/Background%20Paper%20Review.md) |
-| 8    | Thu | 9.11.2023 | 15:15 | GRA330 | [Exercises 6](exercises/Exercises6) |  |  
-|      |     |           | 17:15 | GRA330 | Finish [Lab 5](labs/lab5), Background paper review, Work on project |  |
-|      | Fri | 10.11.2023 | 13:15 | INR219 | Lecture 11 |  [Omega Continuity](https://tube.switch.ch/videos/DkObtnApKb) (from AI recipe onwards), Predicate Abstraction. [Complete slides](lectures/lec11-ai.pdf), [Annotated](lectures/lec11-ai-annot.pdf) |
-| 9    | Thu | 16.11.2023 | 15:15 | GRA330 | Lecture 12 | [Monotonicity and Semantics of Local Variables](https://tube.switch.ch/videos/pJFK2gi0YM), [Relational Semantics of Loops](https://tube.switch.ch/videos/jAePaQR8jc), [Loop Semantics Example](https://tube.switch.ch/videos/M2YCTkGZ4F) |
-|      |     |           | 17:15 | GRA330 | Work on project | Deadline to finish and upload the background paper review.
-|       | Fri | 17.11.2023 | 13:15 | INR219 | [Exercises 7](exercises/Exercises7) |
-| 10    | Thu | 23.11.2023 | 15:15 | GRA330 | **WRITTEN EXAM** | [Exam 2023 Sheet](past-exams/exam2023.pdf)
-|       |     |            | 17:15 | GRA330 | **WRITTEN EXAM** |
-| 11    | Thu | 30.11.2023 | 15:15 | GRA330 | Labs | Project discussions with course staff |
-|       |     |            | 17:15 | GRA330 | Exercises | [Exam Solutions](past-exams/solutions2023.pdf) | 
-|       | Fri | 01.12.2023 | 13:15 | INR219 | Lecture |  [Approximating Loops. Recursion 1](https://tube.switch.ch/videos/xCQoLRTGKq), [Recursion 2](https://tube.switch.ch/videos/NjerTXfE9z), [Termination](lectures/termination.pdf) |
-| 12    | Thu | 07.12.2023 | 15:15 | GRA330 | Labs | Project discussions with course staff |
-|       |     |            | 17:15 | GRA330 | Labs | Project discussions with course staff |
-|       | Fri | 08.12.2023 | 13:15 | INR219 | Lecture | [SMT Solvers](https://tube.switch.ch/videos/CDDwI5RZD0), [Tableau-Based Theorem Proving](lectures/Lecture_on_Tableau-1.pdf) (by Simon), [example tableaux proofs](https://www.umsu.de/trees/)
-| 13    | Thu | 14.12.2023 | 15:15 | GRA330 | Lecture | [Hardware Verification Lecture](lectures/ThomasBourgeat-HardwareVerification.pdf) by [Prof. Thomas Bourgeat](https://people.epfl.ch/thomas.bourgeat) |
-|       |     |            | 17:15 | GRA330 | Labs |  |
-|       | Fri | 15.12.2023 | 13:00 | INR219 | Project Presentations |  |
-|       |     |            | 13:30 | INR219 | Project Presentations |  | 
-| 14    | Thu | 21.12.2023 | 15:15 | GRA330 | Project Presentations |  |
-|       |     |            | 15:45 | GRA330 | Project Presentations |  |
-|       |     |            | 16:15 | GRA330 | Project Presentations |  |
-|       |     |            | 16:45 | GRA330 | Project Presentations |  | 
-|       | Fri | 22.12.2023 | 13:05 | INR219 | Project Presentations |  | 
-|       |     |            | 13:35 | INR219 | Project Presentations |  |  
-|       |     |            | 14:05 | INR219 | Project Presentations |  |  
-|       |     |            | 14:35 | INR219 | Project Presentations |  | 
