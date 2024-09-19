@@ -131,8 +131,8 @@ def reflexivity[T](l: List[T]): Unit = {
 ```
 which should be understood mathematically as
 ```math
-\newcommand{\slist}[0]{\sqsubseteq}
-\newcommand{\seq}[1]{\langle#1\rangle}
+\renewcommand{\slist}[0]{\sqsubseteq}
+\renewcommand{\seq}[1]{\langle#1\rangle}
 \forall l,\  l \slist l
 ```
 Another example: transitivity
@@ -146,8 +146,8 @@ def transitivity[T](l1: List[T], l2: List[T], l3: List[T]): Unit = {
 ```
 which should be interpreted as
 ```math
-\newcommand{\slist}[0]{\sqsubseteq}
-\newcommand{\seq}[1]{\langle#1\rangle}
+\renewcommand{\slist}[0]{\sqsubseteq}
+\renewcommand{\seq}[1]{\langle#1\rangle}
 \forall l_1\, l_2\, l_3,\ l_1 \slist l_2 \land l_2 \slist l_3 \implies l_1 \slist l_3
 ```
 

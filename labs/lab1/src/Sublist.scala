@@ -37,6 +37,19 @@ object SublistSpecs {
   /* forall l, sublist(l, l) */
   def reflexivity[T](l: List[T]): Unit = {
     /* TODO: Prove me */
+    /*
+    // Recursively prove that the list is a sublist of itself
+    decreases(l)
+    // base case: the empty list is a sublist of itself
+    if !l.isEmpty then {
+      // recursive case: check with subset(l.tail) of the list
+      reflexivity(l.tail)
+    }
+    */
+    l match {
+      case Nil() => ()
+      case Cons(_, xs) => reflexivity(xs)
+    }
   }.ensuring(_ =>
     sublist(l, l)
   )
@@ -45,6 +58,10 @@ object SublistSpecs {
     require(!l1.isEmpty && sublist(l1, l2))
 
     /* TODO: Prove me */
+    l1 match {
+      case Nil() => ()
+      case Cons(_, xs) => if xs.isEmpty then () else leftTail(xs, l2)
+    }
   }.ensuring(_ =>
     sublist(l1.tail, l2)
   )
@@ -53,6 +70,7 @@ object SublistSpecs {
     require(!l1.isEmpty && !l2.isEmpty && l1.head == l2.head && sublist(l1, l2))
  
     /* TODO: Prove me */
+    
   }.ensuring(_ =>
     sublist(l1.tail, l2.tail)
   )
