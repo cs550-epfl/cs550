@@ -1,6 +1,6 @@
 # Lab 1: Introduction to stainless
 
-In this first lab, you will use stainless to verify a short scala file.
+This first lab is comprised of two parts. In the first, you will use stainless to verify a short scala file. In the second, you will implement some simple but useful functions on propositional formulas
 
 ## Installation
 
@@ -81,12 +81,11 @@ def sumToIsCorrect(n: BigInt): Unit = {
 
 Whereas we could have modified `sumTo` to state the postcondition `res == n*(n+1)/2`, here we decided to leave `sumTo` as is. To ensure that Stainless proves property by induction, we repeat the recursive structure of `sumTo` inside the body of `sumToIsCorrect`. The result is the same induction schema as if we added apostcondition to `sumTo`. Simple cases of such induction can be simulated by adding `induct` annotation to the original method, but writing explicitly induction schema as we did here is more general.
 
-
-## Lab
-
 ### Getting the source
 
 To start working on this lab, you can either clone this entire repository, or download the present directory alone from Gitlab (there should be a button for this on the top right of the web interface).
+
+## Lab, part 1
 
 ### The `sublist` relation
 
@@ -177,10 +176,48 @@ Some advice:
 - Even though it is not necessary, you can define new lemmas if it helps (but you then have to prove them correct as well 😊);
 - Regarding the four lemmas about concatenation: two very similar lemmas can have vastly different proofs (in both size and difficulty – can you tell why ?).
 
+## Lab, part 2
+In the second part, you have to implement 9 functions on propositional formulas.
+In the `BooleanAlgebra.scala` file, you will fine first the definition of `Formula` as an Algebraic Data Type (ADT): a boolean`Formula` is either
+- A variable `Var(id)`, identified by a unique integer
+- A formal conjunction `And(left, right)`, where `left` and `right` are formulas
+- A formal disjunction `Or(left, right)`, where `left` and `right` are formulas
+- A formal implication `Implies(left, right)`, where `left` and `right` are formulas
+- A formal negation `Not(formula)`, where `formula` is a formula
+- The constant`True` constant,
+- The constant `False` constant,
+
+You have to implement the functions marked by `???` in the file. To help you understand what the function should do, you can find examples of input-output pairs in the `test/Tests.scala` file.
+- `eval` Evaluates a formula under a given assignment of boolean values to variables.
+- `substitute` replaces occurences of variables in a formula by corresponding formulas.
+- `nnf` Transforms a formula into its [Negation Normal Form](https://en.wikipedia.org/wiki/Negation_normal_form).
+- `variables` Returns the set of all the variables in a formula.
+- `validity` Checks if a formula is valid, i.e., if it is true under all possible assignments of boolean values to variables.
+
+You then find the definition of formulas represented as [And-Inverter Graphs](https://en.wikipedia.org/wiki/And-inverter_graph) (AIGs). It so happens that this format, although more restricted, is complete, i.e. it can represent any formula. You have to implement the following functions:
+- `AIG_eval`, `AIG_variables` and `AIG_validity` are similar to their counterparts for formulas, but for AIGs.
+- `formulaToAIG` converts a formula in the usual representation to an AIG formula. Note that there may be multiple equivalent way to do this: You are only required that the input and output formulas are equivalent, i.e. that under any assignment of boolean values to variables, the two formulas evaluate to the same value.
+
+Again, don't forget too look at the tests in `test/Tests.scala` to see example of how what your implementation should behave.
+
+You can run the tests with
+```shell
+> scala-cli test .
+```
+When all tests pass successfuly, you are don!
+
+
 ## Submission
 
-Once you've completed all proofs, you can submit your [Sublist.scala](Sublist.scala) file on [Moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1092878).
+Once you've completed all proofs, you can submit your [Sublist.scala](Sublist.scala) and [BooleanAlgebra.scala](BooleanAlgebra.scala) files on [Moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1092878).
 
 You also need to pick your groups (min 2, max 3) for the labs and projects on [Moodle](https://moodle.epfl.ch/mod/questionnaire/view.php?id=1216793).
 
 Only one member of each group should submit a solution. 
+
+
+## Troubleshooting
+- If, when running `scala-cli test .` you obtain an error of the form `Error: bloop.rifle.FailedToStartServerExitCodeException: Server failed with exit code 1`, try to run the command:
+```shell
+> eval "$(cs java --env --jvm temurin:17)"
+```

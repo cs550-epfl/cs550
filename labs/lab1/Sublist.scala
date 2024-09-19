@@ -1,6 +1,3 @@
-//> using scala "3.2.0"
-//> using jar "stainless-library_2.13-0.9.8.1.jar"
-//> using options "-Wconf:msg=pattern.*?specialized:s,msg=not.*?exhaustive:s"
 
 import stainless.lang._
 import stainless.collection._
