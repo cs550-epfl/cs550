@@ -20,7 +20,7 @@ object BooleanAlgebra {
       case False => "False"
     }
   }
-  def x(i: Int): Formula = Var(i)
+  def x(id: Int): Formula = Var(id)
 
   case class Var(id: Int) extends Formula
   case class And(lhs: Formula, rhs: Formula) extends Formula
@@ -32,23 +32,36 @@ object BooleanAlgebra {
 
 
 
-  // Evaluation of boolean formulas
+  /**
+    * Evaluates a formula under a given environment.
+    * An environment is an assignement of boolean values to variables.
+    */
+  def eval(f: Formula, env: Int => Boolean): Boolean = ???
 
-  def eval(f: Formula, env: Int => Boolean): Boolean = ??? // TODO
+  /**
+    * Substitutes the variables in a formula with other formulas.
+    */
+  def substitute(f: Formula, env: Int => Formula): Formula = ???
 
-  // Substitution of boolean formulas
-  def substitute(f: Formula, env: Int => Formula): Formula = ??? // TODO
+  /**
+    * Returns the negation normal form of a formula.
+    */
+  def nnf(f: Formula): Formula = ???
 
-  // Negation normal form
+  /**
+    * Returns the set of variables in a formula.
+    */
+  def variables(f: Formula): Set[Int] = ???
 
-  def nnf(f: Formula): Formula = ??? // TODO
+  /**
+    * A formula is valid if it evaluates to true under any environment.
+    */
+  def validity(f: Formula): Boolean = ???
 
-  def variables(f: Formula): Set[Int] = ??? // TODO
-
-  def validity(f: Formula): Boolean = ??? // TODO
 
   // And-Inverter Graphs representation
   // (https://en.wikipedia.org/wiki/And-inverter_graph)
+
 
 
   sealed trait AIG_Formula{
@@ -62,20 +75,33 @@ object BooleanAlgebra {
       case AIG_Node(lhs, rhs, false) => s"($lhs ↑ $rhs)"
     }
   }
-  def y(id: Int) = AIG_Var(id, true)
 
   case class AIG_Var(id: Int, polarity: Boolean) extends AIG_Formula {
     infix def unary_! = AIG_Var(id, !polarity)
   }
   case class AIG_Node(lhs: AIG_Formula, rhs: AIG_Formula, polarity: Boolean ) extends AIG_Formula
 
-  def AIG_eval(f: AIG_Formula, env: Int => Boolean): Boolean = ??? // TODO
+  def y(id: Int) = AIG_Var(id, true)
+  /**
+    * Evaluates an AIG formula under a given environment.
+    */
+  def AIG_eval(f: AIG_Formula, env: Int => Boolean): Boolean = ???
 
-  def AIG_variables(f: AIG_Formula): Set[Int] = ??? // TODO
+  /**
+    * Substitutes the variables in an AIG formula with other AIG formulas.
+    */
+  def AIG_variables(f: AIG_Formula): Set[Int] = ???
 
-  def AIG_validity(f: AIG_Formula): Boolean = ??? // TODO
+  /**
+    * A formula is valid if it evaluates to true under any environment.
+    */
+  def AIG_validity(f: AIG_Formula): Boolean = ???
 
-  def formulaToAIG(f: Formula): AIG_Formula = ??? // TODO
+  /**
+    * Converts a boolean formula to an AIG formula.
+    * The resulting formula should evaluates to the same truth value as the original formula, under every assignment.
+    */
+  def formulaToAIG(f: Formula): AIG_Formula = ???
 
 
 }
