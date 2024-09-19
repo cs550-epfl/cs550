@@ -20,7 +20,7 @@ object BooleanAlgebra {
       case False => "False"
     }
   }
-  def x(i: Int): Formula = Var(i)
+  def x(id: Int): Formula = Var(id)
 
   case class Var(id: Int) extends Formula
   case class And(lhs: Formula, rhs: Formula) extends Formula
@@ -32,71 +32,36 @@ object BooleanAlgebra {
 
 
 
-  // Evaluation of boolean formulas
+  /**
+    * Evaluates a formula under a given environment.
+    * An environment is an assignement of boolean values to variables.
+    */
+  def eval(f: Formula, env: Int => Boolean): Boolean = ???
 
-  def eval(f: Formula, env: Int => Boolean): Boolean = f match {
-    case Var(id) => env(id)
-    case And(lhs, rhs) => eval(lhs, env) && eval(rhs, env)
-    case Or(lhs, rhs) => eval(lhs, env) || eval(rhs, env)
-    case Implies(lhs, rhs) => !eval(lhs, env) || eval(rhs, env)
-    case Not(f) => !eval(f, env)
-    case True => true
-    case False => false
-  }
+  /**
+    * Substitutes the variables in a formula with other formulas.
+    */
+  def substitute(f: Formula, env: Int => Formula): Formula = ???
 
-  // Substitution of boolean formulas
-  def substitute(f: Formula, env: Int => Formula): Formula = f match {
-    case Var(id) => env(id)
-    case And(lhs, rhs) => And(substitute(lhs, env), substitute(rhs, env))
-    case Or(lhs, rhs) => Or(substitute(lhs, env), substitute(rhs, env))
-    case Implies(lhs, rhs) => Implies(substitute(lhs, env), substitute(rhs, env))
-    case Not(f) => Not(substitute(f, env))
-    case True => True
-    case False => False
-  }
+  /**
+    * Returns the negation normal form of a formula.
+    */
+  def nnf(f: Formula): Formula = ???
 
-  // Negation normal form
+  /**
+    * Returns the set of variables in a formula.
+    */
+  def variables(f: Formula): Set[Int] = ???
 
-  def nnf(f: Formula): Formula = f match {
-    case Var(_) => f
-    case And(lhs, rhs) => And(nnf(lhs), nnf(rhs))
-    case Or(lhs, rhs) => Or(nnf(lhs), nnf(rhs))
-    case Implies(lhs, rhs) => Or(nnf(Not(lhs)), nnf(rhs))
-    case Not(Var(_)) => f
-    case Not(And(lhs, rhs)) => Or(nnf(Not(lhs)), nnf(Not(rhs)))
-    case Not(Or(lhs, rhs)) => And(nnf(Not(lhs)), nnf(Not(rhs)))
-    case Not(Implies(lhs, rhs)) => And(nnf(lhs), nnf(Not(rhs)))
-    case Not(Not(f)) => nnf(f)
-    case Not(True) => False
-    case Not(False) => True
-  }
-
-  def variables(f: Formula): Set[Int] = f match {
-    case Var(id) => Set(id)
-    case And(lhs, rhs) => variables(lhs) ++ variables(rhs)
-    case Or(lhs, rhs) => variables(lhs) ++ variables(rhs)
-    case Implies(lhs, rhs) => variables(lhs) ++ variables(rhs)
-    case Not(f) => variables(f)
-    case True => Set()
-    case False => Set()
-  } 
-
-  def validity(f: Formula): Boolean = {
-    def variables(f: Formula): Set[Int] = f match {
-      case Var(id) => Set(id)
-      case And(lhs, rhs) => variables(lhs) ++ variables(rhs)
-      case Or(lhs, rhs) => variables(lhs) ++ variables(rhs)
-      case Implies(lhs, rhs) => variables(lhs) ++ variables(rhs)
-      case Not(f) => variables(f)
-      case True => Set()
-      case False => Set()
-    }
-    variables(f).subsets.forall(subset => eval(f, id => subset.contains(id)))
-  }
+  /**
+    * A formula is valid if it evaluates to true under any environment.
+    */
+  def validity(f: Formula): Boolean = ???
 
 
   // And-Inverter Graphs representation
   // (https://en.wikipedia.org/wiki/And-inverter_graph)
+
 
 
   sealed trait AIG_Formula{
@@ -110,48 +75,33 @@ object BooleanAlgebra {
       case AIG_Node(lhs, rhs, false) => s"($lhs ↑ $rhs)"
     }
   }
-  def y(id: Int) = AIG_Var(id, true)
 
   case class AIG_Var(id: Int, polarity: Boolean) extends AIG_Formula {
     infix def unary_! = AIG_Var(id, !polarity)
   }
   case class AIG_Node(lhs: AIG_Formula, rhs: AIG_Formula, polarity: Boolean ) extends AIG_Formula
 
-  def AIG_eval(f: AIG_Formula, env: Int => Boolean): Boolean = f match {
-    case AIG_Var(id, polarity) => polarity == env(id)
-    case AIG_Node(lhs, rhs, polarity) => polarity == (AIG_eval(lhs, env) && AIG_eval(rhs, env))
-  }
+  def y(id: Int) = AIG_Var(id, true)
+  /**
+    * Evaluates an AIG formula under a given environment.
+    */
+  def AIG_eval(f: AIG_Formula, env: Int => Boolean): Boolean = ???
 
-  def AIG_variables(f: AIG_Formula): Set[Int] = f match {
-    case AIG_Var(id, _) => Set(id)
-    case AIG_Node(lhs, rhs, _) => AIG_variables(lhs) ++ AIG_variables(rhs)
-  }
+  /**
+    * Substitutes the variables in an AIG formula with other AIG formulas.
+    */
+  def AIG_variables(f: AIG_Formula): Set[Int] = ???
 
-  def AIG_validity(f: AIG_Formula): Boolean = {
-    AIG_variables(f).subsets.forall(subset => AIG_eval(f, id => subset.contains(id)))
-  }
+  /**
+    * A formula is valid if it evaluates to true under any environment.
+    */
+  def AIG_validity(f: AIG_Formula): Boolean = ???
 
-  def formulaToAIG(f: Formula): AIG_Formula = {
-    def notaig(f:AIG_Formula) = AIG_Node(f, f, false)
-    f match {
-      case Var(id) => AIG_Var(id, true)
-      case Not(Var(id)) => AIG_Var(id, false)
-      case And(lhs, rhs) => AIG_Node(formulaToAIG(lhs), formulaToAIG(rhs), true)
-      case Or(lhs, rhs) => AIG_Node(formulaToAIG(!lhs), formulaToAIG(!rhs), false)
-      case Implies(lhs, rhs) => AIG_Node(formulaToAIG(lhs), formulaToAIG(!rhs), false)
-      case Not(And(lhs, rhs)) => AIG_Node(formulaToAIG(lhs), formulaToAIG(rhs), false)
-      case Not(Or(lhs, rhs)) => AIG_Node(formulaToAIG(!lhs), formulaToAIG(!rhs), true)
-      case Not(Implies(lhs, rhs)) => AIG_Node(formulaToAIG(lhs), formulaToAIG(!rhs), true)
-      case Not(Not(f)) => formulaToAIG(f)
-      case True => AIG_Node(y(0), !y(0), false)
-      case False => AIG_Node(y(0), !y(0), true)
-    }
-  }
-
-
-
-
-
+  /**
+    * Converts a boolean formula to an AIG formula.
+    * The resulting formula should evaluates to the same truth value as the original formula, under every assignment.
+    */
+  def formulaToAIG(f: Formula): AIG_Formula = ???
 
 
 }
