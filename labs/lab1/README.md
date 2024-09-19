@@ -43,8 +43,9 @@ sbt script version: 1.9.6
 ```
 
 ### Stainless
-Download the latest stainless release (0.9.8.1) from its [repository](https://github.com/epfl-lara/stainless/releases/tag/v0.9.8.1) (download the file named `stainless-dotty-standalone-0.9.8.1-<your_os>.zip`). 
-On Windows, it is recommended to run the linux version on top of the [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install).
+Download the latest stainless release from its [repository](https://github.com/epfl-lara/stainless/releases/tag/v0.9.8.8). 
+
+On Windows, it is recommended to run the linux version on top of the Windows Subsystem for Linux (WSL 2).
 
 The release is an archive containing, among other things, a script called **stainless**, that you should make available on your path. Detailed instructions can be found in [this video](https://tube.switch.ch/videos/03edee61). 
 

@@ -60,7 +60,7 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      |     |            |   |   | Follow:                        | [Stainless Tutorial Videos](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_t2ld6vzn/0_azxgetu9) and [materials](https://epfl-lara.github.io/asplos2022tutorial/)  |
 |      | Fri | 13.09.2024 | 13:15 | [INR219](https://plan.epfl.ch/?room==INR%20219) | [Lecture 3](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_tv48ew7w)                       | [What is a Formal Proof?](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_tv48ew7w) and [Propositional Resolution](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_lovmc46b) |
 | 2    | Thu | 19.09.2024 | 15:15 | GRA330 | Lecture 2 | continue [Propositional Resolution](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_lovmc46b) |
-|      |     |            | 17:15 | GRA330 | Lab 1 |
+|      |     |            | 17:15 | GRA330 | [Lab 1](labs/lab1/README.md) | |
 |      | Fri | 13.09.2024 | 13:15 | INR219 | Exercises 1 |
 
 **Midterm exam:** Thursday, 28 November, 15:00-18:00
