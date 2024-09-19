@@ -10,11 +10,11 @@ In order to run stainless, as well as the programs you will verify, you will nee
 You can check your Java version using 
 ```shell
 > java -version
-openjdk version "17.0.8.1" 2023-08-24
-OpenJDK Runtime Environment (build 17.0.8.1+1)
-OpenJDK 64-Bit Server VM (build 17.0.8.1+1, mixed mode)
+openjdk version "17.0.9" 2023-10-17
+OpenJDK Runtime Environment Temurin-17.0.9+9 (build 17.0.9+9)
+OpenJDK 64-Bit Server VM Temurin-17.0.9+9 (build 17.0.9+9, mixed mode, sharing)
 > javac -version
-javac 17.0.8.1
+javac 17.0.9
 ```
 The exact version might vary, but the major version should be 17.
 
@@ -35,11 +35,11 @@ You can test your installation with
 > scala -version
 Scala code runner version 3.3.1 -- Copyright 2002-2023, LAMP/EPFL
 > scala-cli -version
-Scala CLI version: 1.0.4
-Scala version (default): 3.3.0
+Scala CLI version: 1.5.0
+Scala version (default): 3.5.0
 > sbt -version
-sbt version in this project: 1.9.6
-sbt script version: 1.9.6
+sbt version in this project: 1.9.8
+sbt script version: 1.9.8
 ```
 
 ### Stainless
@@ -55,10 +55,12 @@ Stainless should then produce the following output (you may need to add `.sh` or
 ```shell
 > stainless --version
 [  Info  ] Stainless verification tool (https://github.com/epfl-lara/stainless)
-[  Info  ] Version: 0.9.8.1
-[  Info  ] Built at: 2023-09-21 16:19:34.140+0200
-[  Info  ] Stainless Scala version: 3.2.0
-[  Info  ] Bundled Scala compiler: 3.2.0
+[  Info  ]   Version: 0.9.8.8
+[  Info  ]   Built at: 2024-08-22 13:43:47.647+0200
+[  Info  ]   Stainless Scala version: 3.3.3
+[  Info  ] Inox solver (https://github.com/epfl-lara/inox)
+[  Info  ] Version: 1.1.5-166-gca9e9e8
+[  Info  ] Bundled Scala compiler: 3.3.3
 ```
 
 ## Tutorial
@@ -154,9 +156,9 @@ The file contains eleven properties on `sublist` that you have to prove.
 To check your proofs, use
 ```shell
 # On Linux and WSL
-> stainless Sublist.scala
+> stainless src/Sublist.scala
 # On Mac
-> stainless --solvers=smt-z3 Sublist.scala
+> stainless --solvers=smt-z3 src/Sublist.scala
 ``` 
 
 
@@ -164,7 +166,7 @@ The provided configuration file ([stainless.conf](stainless.conf)) will automati
 You can override this while experimenting with your proofs by either changing the configuration file or using the command line, by adding e.g. `--timeout=5` to set the timeout to 5 seconds.
 You can also add `--watch` for stainless to automatically run on file save:
 ```shell
-> stainless --timeout=5 --watch Sublist.scala
+> stainless --timeout=5 --watch src/Sublist.scala
 ```
 
 You are not allowed to change the definition of `sublist` or the statement (parameters/return types, function name, requirements, conclusion, ...) of any of the properties.
