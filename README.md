@@ -61,6 +61,44 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      | Fri | 13.09.2024 | 13:15 | [INR219](https://plan.epfl.ch/?room==INR%20219) | [Lecture 3](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_tv48ew7w)                       | [What is a Formal Proof?](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_tv48ew7w) and [Propositional Resolution](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_lovmc46b) |
 | 2    | Thu | 19.09.2024 | 15:15 | GRA330 | Lecture 2 | continue [Propositional Resolution](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_lovmc46b) |
 |      |     |            | 17:15 | GRA330 | [Lab 1](labs/lab1/README.md) | |
-|      | Fri | 13.09.2024 | 13:15 | INR219 | Exercises 1 |
+|      | Fri | 20.09.2024 | 13:15 | INR219 | [Exercises 1](exercises/Exercises1) | Propositional Logic |
+|      | Thu | 26.09.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | Lab 2 | A communication protocol in Stainless |
+|      | Fri | 27.09.2024 | 13:15 | INR219 | Exercises 2 | Traces, SAT, models |
+|      | Thu | 03.10.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 04.10.2024 | 13:15 | INR219 | | |
+|      | Thu | 10.10.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 11.10.2024 | 13:15 | INR219 | | |
+|      | Thu | 17.10.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 18.10.2024 | 13:15 | INR219 | | |
+|      | Thu | 24.10.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 25.10.2024 | 13:15 | INR219 | | |
+|      | Thu | 31.10.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 01.11.2024 | 13:15 | INR219 | | |
+|      | Thu | 07.11.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 08.11.2024 | 13:15 | INR219 | | |
+|      | Thu | 14.11.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 15.11.2024 | 13:15 | INR219 | | |
+|      | Thu | 21.11.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 22.11.2024 | 13:15 | INR219 | | |
+|      | Thu | 28.11.2024 | 15:15 | GRA330, AAC114 | Midterm, until 18:00 | |
+|      | Fri | 29.11.2024 | 13:15 | INR219 | | |
+|      | Thu | 05.12.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 06.12.2024 | 13:15 | INR219 | | |
+|      | Thu | 12.12.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 13.12.2024 | 13:15 | INR219 | | |
+|      | Thu | 19.12.2024 | 15:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | | |
+|      | Fri | 20.12.2024 | 13:15 | INR219 | | |
 
 **Midterm exam:** Thursday, 28 November, 15:00-18:00
