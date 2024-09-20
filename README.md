@@ -74,9 +74,9 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      | Thu | 17.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 18.10.2024 | 13:15 | INR219 | | |
-|      | Thu | 24.10.2024 | 15:15 | GRA330 | | |
-|      |     |            | 17:15 | GRA330 | | |
-|      | Fri | 25.10.2024 | 13:15 | INR219 | | |
+|      | Thu | 24.10.2024 | 15:15 | GRA330 | Holidays | |
+|      |     |            | 17:15 | GRA330 | Holidays | |
+|      | Fri | 25.10.2024 | 13:15 | INR219 | Holidays | |
 |      | Thu | 31.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 01.11.2024 | 13:15 | INR219 | | |
