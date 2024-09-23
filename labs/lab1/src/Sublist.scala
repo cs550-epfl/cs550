@@ -53,91 +53,113 @@ object SublistSpecs {
   }.ensuring(_ =>
     sublist(l, l)
   )
- 
+
   def leftTail[T](l1: List[T], l2: List[T]): Unit = {
     require(!l1.isEmpty && sublist(l1, l2))
 
     /* TODO: Prove me */
-    l1 match {
-      case Nil() => ()
-      case Cons(_, xs) => if xs.isEmpty then () else leftTail(xs, l2)
-    }
+    // Why does it work?
+    if (sublist(l1, l2.tail))
+      leftTail(l1, l2.tail)
+    else
+      ()
   }.ensuring(_ =>
     sublist(l1.tail, l2)
   )
- 
+
   def tails[T](l1: List[T], l2: List[T]): Unit = {
     require(!l1.isEmpty && !l2.isEmpty && l1.head == l2.head && sublist(l1, l2))
  
     /* TODO: Prove me */
-    
+    /*
+    // base case
+    if (l1.size == 1 || l2.size == 1) {
+      return ()
+    }
+
+    // recursive case
+    (l1.tail, l2.tail) match {
+      case (Nil(), _)                 => ()
+      case (_, Nil())                 => ()
+      case (Cons(x1, x1s), Cons(y1, y1s)) => {
+        leftTail(l1, l2) // Prove that l1.tail <= l2
+        if (x1 != y1 && !y1s.isEmpty) {
+          leftTail(l1.tail, l2.tail.tail)
+        } 
+      }
+    }
+    */
+    if (sublist(l1, l2.tail))
+      leftTail(l1, l2.tail)
+    else 
+      ()
   }.ensuring(_ =>
     sublist(l1.tail, l2.tail)
   )
- 
-  /* forall l1 l2 l3, sublist(l1, l2) /\ sublist(l2, l3) ==> sublist(l1, l3) */
-  def transitivity[T](l1: List[T], l2: List[T], l3: List[T]): Unit = {
-    require(sublist(l1, l2) && sublist(l2, l3))
- 
-    /* TODO: Prove me */
-  }.ensuring(_ =>
-    sublist(l1, l3)
-  )
- 
-  def lengthHomomorphism[T](l1: List[T], l2: List[T]): Unit = {
-    require(sublist(l1, l2))
- 
-    /* TODO: Prove me */
-  }.ensuring(_ =>
-    l1.length <= l2.length
-  )
- 
-  def biggerSublist[T](l1: List[T], l2: List[T]): Unit = {
-    require(sublist(l1, l2) && l1.length >= l2.length)
- 
-    /* TODO: Prove me */
-  }.ensuring(_ =>
-    l1 == l2
-  )
- 
-  def antisymmetry[T](l1: List[T], l2: List[T]): Unit = {
-    require(sublist(l1, l2) && sublist(l2, l1))
- 
-    /* TODO: Prove me */
-  }.ensuring(_ =>
-    l1 == l2
-  )
 
-  /* 
-  * ++ is the list concatenation operator.
-  * It is defined here: 
-  * https://github.com/epfl-lara/stainless/blob/64a09dbc58d0a41e49e7dffbbd44b234c4d2da59/frontends/library/stainless/collection/List.scala#L46
-  */
-  def extendRight[T](l1: List[T], l2: List[T]): Unit = {
-    /* TODO: Prove me */
-  }.ensuring(_ => 
-    sublist(l1, l1 ++ l2)  
-  )
+  // /* forall l1 l2 l3, sublist(l1, l2) /\ sublist(l2, l3) ==> sublist(l1, l3) */
+  // def transitivity[T](l1: List[T], l2: List[T], l3: List[T]): Unit = {
+  //   require(sublist(l1, l2) && sublist(l2, l3))
+ 
+  //   /* TODO: Prove me */
+  // }.ensuring(_ =>
+  //   sublist(l1, l3)
+  // )
+ 
+  // def lengthHomomorphism[T](l1: List[T], l2: List[T]): Unit = {
+  //   require(sublist(l1, l2))
+ 
+  //   /* TODO: Prove me */
+  // }.ensuring(_ =>
+  //   l1.length <= l2.length
+  // )
+ 
+  // def biggerSublist[T](l1: List[T], l2: List[T]): Unit = {
+  //   require(sublist(l1, l2) && l1.length >= l2.length)
+ 
+  //   /* TODO: Prove me */
+  // }.ensuring(_ =>
+  //   l1 == l2
+  // )
+ 
+  // def antisymmetry[T](l1: List[T], l2: List[T]): Unit = {
+  //   require(sublist(l1, l2) && sublist(l2, l1))
+ 
+  //   /* TODO: Prove me */
+  // }.ensuring(_ =>
+  //   l1 == l2
+  // )
 
-  def extendLeft[T](l1: List[T], l2: List[T]): Unit = {
-    /* TODO: Prove me */
-  }.ensuring(_ => 
-    sublist(l2, l1 ++ l2)  
-  )
+  // /* 
+  // * ++ is the list concatenation operator.
+  // * It is defined here: 
+  // * https://github.com/epfl-lara/stainless/blob/64a09dbc58d0a41e49e7dffbbd44b234c4d2da59/frontends/library/stainless/collection/List.scala#L46
+  // */
+  // def extendRight[T](l1: List[T], l2: List[T]): Unit = {
+  //   /* TODO: Prove me */
+  // }.ensuring(_ => 
+  //   sublist(l1, l1 ++ l2)  
+  // )
 
-  def prepend[T](l: List[T], l1: List[T], l2: List[T]): Unit = {
-    require(sublist(l1, l2))
+  // def extendLeft[T](l1: List[T], l2: List[T]): Unit = {
+  //   /* TODO: Prove me */
+  // }.ensuring(_ => 
+  //   sublist(l2, l1 ++ l2)  
+  // )
 
-    /* TODO: Prove me */
-  }.ensuring(_ =>
-    sublist(l ++ l1, l ++ l2)  
-  )
+  // def prepend[T](l: List[T], l1: List[T], l2: List[T]): Unit = {
+  //   require(sublist(l1, l2))
 
-  def append[T](l1: List[T], l2: List[T], l: List[T]): Unit = {
-    require(sublist(l1, l2))
+  //   /* TODO: Prove me */
+  // }.ensuring(_ =>
+  //   sublist(l ++ l1, l ++ l2)  
+  // )
 
-    /* TODO: Prove me */
-  }.ensuring(_ =>
-    sublist(l1 ++ l, l2 ++ l)  
-  )
+  // def append[T](l1: List[T], l2: List[T], l: List[T]): Unit = {
+  //   require(sublist(l1, l2))
+
+  //   /* TODO: Prove me */
+  // }.ensuring(_ =>
+  //   sublist(l1 ++ l, l2 ++ l)  
+  // )
 }
