@@ -2,7 +2,7 @@
 
 In this second lab, you will use stainless to verify a simple communication protocol. As we will see, Stainless also allows us to prove properties on traits and classes, which are at the core of every Scala program.
 
-By now you should already have some familiarities with Stainless. You can nonetheless find useful ressources in the handout of [Lab 1](../../lab2/README.md#Tutorial) or on [Stainless repository](https://github.com/epfl-lara/stainless).
+By now you should already have some familiarities with Stainless. You can nonetheless find useful ressources in the handout of [Lab 1](../lab1/README.md#Tutorial) or on [Stainless repository](https://github.com/epfl-lara/stainless).
 
 
 ### Getting the source

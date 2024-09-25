@@ -47,7 +47,7 @@ Download the latest stainless release from its [repository](https://github.com/e
 
 On Windows, it is recommended to run the linux version on top of the Windows Subsystem for Linux (WSL 2).
 
-The release is an archive containing, among other things, a script called **stainless**, that you should make available on your path. Detailed instructions can be found in [this video](https://tube.switch.ch/videos/03edee61). 
+The release is an archive containing, among other things, a script called **stainless**, that you should make available on your path. Detailed instructions can be found in [this video](https://mediaspace.epfl.ch/media/01-21%2C%20Stainless%20Tutorial%201_4/0_h1bv5a7v). 
 
 On Mac, you should also make the `z3` executable (which is part of the stainless release) available on your path.
 
