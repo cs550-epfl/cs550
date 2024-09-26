@@ -58,7 +58,6 @@ object SublistSpecs {
     require(!l1.isEmpty && sublist(l1, l2))
 
     /* TODO: Prove me */
-    // Why does it work?
     if (sublist(l1, l2.tail))
       leftTail(l1, l2.tail)
     else
@@ -97,14 +96,48 @@ object SublistSpecs {
     sublist(l1.tail, l2.tail)
   )
 
-  // /* forall l1 l2 l3, sublist(l1, l2) /\ sublist(l2, l3) ==> sublist(l1, l3) */
-  // def transitivity[T](l1: List[T], l2: List[T], l3: List[T]): Unit = {
-  //   require(sublist(l1, l2) && sublist(l2, l3))
+
+  
+  def transitivity[T](l1: List[T], l2: List[T], l3: List[T]): Unit = {
+    require(sublist(l1, l2) && sublist(l2, l3))
  
-  //   /* TODO: Prove me */
-  // }.ensuring(_ =>
-  //   sublist(l1, l3)
-  // )
+    /* TODO: Prove me */
+    /*
+    l1 match
+      case Nil() => ()
+      case Cons(x, xs) =>
+        val (Cons(y, ys), Cons(z, zs)) = (l2, l3)··
+        if x == y && y == z then
+          tails(l1, l2)
+          tails(l2, l3)
+          transitivity(l1.tail, l2.tail, l3.tail)
+        else if x != y && sublist(l1, l2.tail) then
+          leftTail(l2, l3)
+          transitivity(l1, l2.tail, l3)
+        else if y != z && sublist(l2, l3.tail) then
+          transitivity(l1, l2, l3.tail)
+    */
+    if (l1.size == 0) {
+      return ()
+    }
+    if (sublist(l1, l2.tail) &&  sublist(l2, l3.tail)) {
+      leftTail(l2, l3.tail)
+      transitivity(l1, l2.tail, l3.tail)
+    } else if (sublist(l2, l3.tail)) {
+      transitivity(l1,l2,l3.tail)
+      //assert()
+    }
+    else if (sublist(l1, l2.tail)) {
+      transitivity(l1, l2.tail, l3.tail)
+    }
+    else{
+      transitivity(l1.tail, l2.tail, l3.tail)
+      assert(l1.head == l2.head && l2.head == l3.head)
+      assert(sublist(l1.head :: l1.tail, l3.head :: l3.tail))
+    }
+  }.ensuring(_ =>
+    sublist(l1, l3)
+  )  
  
   // def lengthHomomorphism[T](l1: List[T], l2: List[T]): Unit = {
   //   require(sublist(l1, l2))
