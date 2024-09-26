@@ -37,15 +37,6 @@ object SublistSpecs {
   /* forall l, sublist(l, l) */
   def reflexivity[T](l: List[T]): Unit = {
     /* TODO: Prove me */
-    /*
-    // Recursively prove that the list is a sublist of itself
-    decreases(l)
-    // base case: the empty list is a sublist of itself
-    if !l.isEmpty then {
-      // recursive case: check with subset(l.tail) of the list
-      reflexivity(l.tail)
-    }
-    */
     l match {
       case Nil() => ()
       case Cons(_, xs) => reflexivity(xs)
@@ -78,8 +69,8 @@ object SublistSpecs {
 
     // recursive case
     (l1.tail, l2.tail) match {
-      case (Nil(), _)                 => ()
-      case (_, Nil())                 => ()
+      case (Nil(), _) => ()
+      case (_, Nil()) => ()
       case (Cons(x1, x1s), Cons(y1, y1s)) => {
         leftTail(l1, l2) // Prove that l1.tail <= l2
         if (x1 != y1 && !y1s.isEmpty) {
@@ -102,21 +93,7 @@ object SublistSpecs {
     require(sublist(l1, l2) && sublist(l2, l3))
  
     /* TODO: Prove me */
-    /*
-    l1 match
-      case Nil() => ()
-      case Cons(x, xs) =>
-        val (Cons(y, ys), Cons(z, zs)) = (l2, l3)··
-        if x == y && y == z then
-          tails(l1, l2)
-          tails(l2, l3)
-          transitivity(l1.tail, l2.tail, l3.tail)
-        else if x != y && sublist(l1, l2.tail) then
-          leftTail(l2, l3)
-          transitivity(l1, l2.tail, l3)
-        else if y != z && sublist(l2, l3.tail) then
-          transitivity(l1, l2, l3.tail)
-    */
+    // Why does it work?
     if (l1.size == 0) {
       return ()
     }
@@ -125,7 +102,6 @@ object SublistSpecs {
       transitivity(l1, l2.tail, l3.tail)
     } else if (sublist(l2, l3.tail)) {
       transitivity(l1,l2,l3.tail)
-      //assert()
     }
     else if (sublist(l1, l2.tail)) {
       transitivity(l1, l2.tail, l3.tail)
@@ -139,60 +115,109 @@ object SublistSpecs {
     sublist(l1, l3)
   )  
  
-  // def lengthHomomorphism[T](l1: List[T], l2: List[T]): Unit = {
-  //   require(sublist(l1, l2))
+  def lengthHomomorphism[T](l1: List[T], l2: List[T]): Unit = {
+    require(sublist(l1, l2))
+
+    /* TODO: Prove me */
+    if (l1.isEmpty)
+      return ()
+
+    if (sublist(l1, l2.tail))
+      lengthHomomorphism(l1, l2.tail)
+    else
+      lengthHomomorphism(l1.tail, l2.tail)
+  }.ensuring(_ =>
+    l1.length <= l2.length
+  )
  
-  //   /* TODO: Prove me */
-  // }.ensuring(_ =>
-  //   l1.length <= l2.length
-  // )
+  def biggerSublist[T](l1: List[T], l2: List[T]): Unit = {
+    require(sublist(l1, l2) && l1.length >= l2.length)
  
-  // def biggerSublist[T](l1: List[T], l2: List[T]): Unit = {
-  //   require(sublist(l1, l2) && l1.length >= l2.length)
+    /* TODO: Prove me */
+    if (l1.isEmpty)
+      return ()
+    
+    if (sublist(l1, l2.tail))
+      lengthHomomorphism(l1, l2.tail)
+    else
+      biggerSublist(l1.tail, l2.tail)
+  }.ensuring(_ =>
+    l1 == l2
+  )
  
-  //   /* TODO: Prove me */
-  // }.ensuring(_ =>
-  //   l1 == l2
-  // )
+  def antisymmetry[T](l1: List[T], l2: List[T]): Unit = {
+    require(sublist(l1, l2) && sublist(l2, l1))
  
-  // def antisymmetry[T](l1: List[T], l2: List[T]): Unit = {
-  //   require(sublist(l1, l2) && sublist(l2, l1))
- 
-  //   /* TODO: Prove me */
-  // }.ensuring(_ =>
-  //   l1 == l2
-  // )
+    /* TODO: Prove me */
+    if (l1.isEmpty)
+      return ()
+    
+    if (sublist(l1, l2.tail))
+      transitivity(l2, l1, l2.tail)
+      lengthHomomorphism(l2, l2.tail)
+    else if (sublist(l2, l1.tail))
+      transitivity(l1, l2, l1.tail)
+      lengthHomomorphism(l1, l1.tail)
+    else
+      antisymmetry(l1.tail, l2.tail)
+  }.ensuring(_ =>
+    l1 == l2
+  )
 
-  // /* 
-  // * ++ is the list concatenation operator.
-  // * It is defined here: 
-  // * https://github.com/epfl-lara/stainless/blob/64a09dbc58d0a41e49e7dffbbd44b234c4d2da59/frontends/library/stainless/collection/List.scala#L46
-  // */
-  // def extendRight[T](l1: List[T], l2: List[T]): Unit = {
-  //   /* TODO: Prove me */
-  // }.ensuring(_ => 
-  //   sublist(l1, l1 ++ l2)  
-  // )
+  /* 
+   * ++ is the list concatenation operator.
+   * It is defined here: 
+   * https://github.com/epfl-lara/stainless/blob/64a09dbc58d0a41e49e7dffbbd44b234c4d2da59/frontends/library/stainless/collection/List.scala#L46
+   */
+  def extendRight[T](l1: List[T], l2: List[T]): Unit = {
+    /* TODO: Prove me */
+    l1 match {
+      case Nil() => ()
+      case Cons(x, xs) => {
+        extendRight(xs, l2)
+      }
+    }
+  }.ensuring(_ => 
+    sublist(l1, l1 ++ l2)  
+  )
 
-  // def extendLeft[T](l1: List[T], l2: List[T]): Unit = {
-  //   /* TODO: Prove me */
-  // }.ensuring(_ => 
-  //   sublist(l2, l1 ++ l2)  
-  // )
+  def extendLeft[T](l1: List[T], l2: List[T]): Unit = {
+    /* TODO: Prove me */
+    l1 match {
+      case Nil() => reflexivity(l2)
+      case Cons(x, xs) => extendLeft(xs, l2)
+    }
+  }.ensuring(_ => 
+    sublist(l2, l1 ++ l2)  
+  )
 
-  // def prepend[T](l: List[T], l1: List[T], l2: List[T]): Unit = {
-  //   require(sublist(l1, l2))
+  def prepend[T](l: List[T], l1: List[T], l2: List[T]): Unit = {
+    require(sublist(l1, l2))
 
-  //   /* TODO: Prove me */
-  // }.ensuring(_ =>
-  //   sublist(l ++ l1, l ++ l2)  
-  // )
+    /* TODO: Prove me */
+    l match{
+      case Nil() => ()
+      case Cons(x, xs) => prepend(xs, l1, l2)
+    }
+  }.ensuring(_ =>
+    sublist(l ++ l1, l ++ l2)  
+  )
 
-  // def append[T](l1: List[T], l2: List[T], l: List[T]): Unit = {
-  //   require(sublist(l1, l2))
+  def append[T](l1: List[T], l2: List[T], l: List[T]): Unit = {
+    require(sublist(l1, l2))
 
-  //   /* TODO: Prove me */
-  // }.ensuring(_ =>
-  //   sublist(l1 ++ l, l2 ++ l)  
-  // )
+    /* TODO: Prove me */
+    (l1, l2) match {
+      case (Nil(), _) => extendLeft(l2, l)
+      case (_, Nil()) => ()
+      case (Cons(x, xs), Cons(y, ys)) => {
+        if (sublist(l1, ys))
+          append(l1, ys, l)
+        else
+          append(xs, ys, l)
+      }
+    }
+  }.ensuring(_ =>
+    sublist(l1 ++ l, l2 ++ l)  
+  )
 }

@@ -180,14 +180,23 @@ object BooleanAlgebra {
     */
   def formulaToAIG(f: Formula): AIG_Formula = {
     f match {
-      case True => Or(0, 1)   // A || !A ==> !(!A && A) = True
-      case False => AIG_Var(0, false) // A && !A = False
+
+      case True => formulaToAIG(Or(Var(0), Not(Var(0))))  // A || !A ==> !(!A && A) = True
+      case False => formulaToAIG(And(Var(0), Not(Var(0)))) // A && !A = False
+
       case Var(id) => AIG_Var(id, true)
       case Not(Var(id)) => AIG_Var(id, false)
-      case And(lhs, rhs) => AIG_Node(formulaToAIG(lhs), formulaToAIG(rhs), true) //
-      case Or(lhs, rhs) => AIG_Node(formulaToAIG(lhs), formulaToAIG(rhs), false)
-      case Implies(lhs, rhs) => AIG_Node(formulaToAIG(Not(lhs)), formulaToAIG(rhs), false)
-      case Not(f) => AIG_Node(formulaToAIG(f), AIG_Var(0, false), false)
+
+      case Not(Not(f)) => formulaToAIG(f)
+
+      case And(lhs, rhs) => AIG_Node(formulaToAIG(lhs), formulaToAIG(rhs), true)
+      case Not(And(lhs, rhs)) => AIG_Node(formulaToAIG(lhs), formulaToAIG(rhs), false)
+
+      case Or(lhs, rhs) => AIG_Node(formulaToAIG(Not(lhs)), formulaToAIG(Not(rhs)), false) // a || b = !(!a && !b)
+      case Not(Or(lhs, rhs)) => AIG_Node(formulaToAIG(Not(lhs)), formulaToAIG(Not(rhs)), true) // !(a || b) = !a && !b
+
+      case Implies(lhs, rhs) => AIG_Node(formulaToAIG(lhs), formulaToAIG(Not(rhs)), false) // a ==> b = !a || b = 
+      case Not(Implies(lhs, rhs)) => AIG_Node(formulaToAIG(lhs), formulaToAIG(Not(rhs)), true)
     }    
   }
 }
