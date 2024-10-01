@@ -17,7 +17,7 @@ trait Message
   * In order to be non-deterministic, hasSent relies on a seed. In the rest
   * of this lab, we will assume that the seed is the time.
   * 
-  * We also  define three special types of networks:
+  * We also define three special types of networks:
   *  - noLossNetwork: networks that do not loose packets
   *  - fullLossNetwork: networks that loose every packet
   *  - badButPredictableNetwork: networks that transmits a packet every n
@@ -116,6 +116,17 @@ object NetworkProperties {
   def receivedAllMsgCorrectly(sender: Endpoint, receiverBeforeExchange: Endpoint, receiverAfterExchange: Endpoint): Boolean =
     (receiverBeforeExchange.received ++ sender.toSend) == receiverAfterExchange.received
 
+  /**
+    * 
+    */
+  def receivedSomeMsgCorrectly(received: List[Message], toSend: List[Message]): Unit = {
+    require(!toSend.isEmpty)
+    (received, toSend) match {
+      case (Nil(), _) => ()
+      case (_, Nil()) => ()
+      case (Cons(r, rs), _) => receivedSomeMsgCorrectly(rs, toSend)
+    }
+  }.ensuring(received ++ toSend == (received :+ toSend.head) ++ toSend.tail)
 
   /**
     * Correctness of the protocol: that is, if the sender has no more message to send then it means the receiver
@@ -132,7 +143,21 @@ object NetworkProperties {
     require(!network.messageExchange(sender, receiver, iter)._1.msgQueued)
 
     /* TODO: Prove me */
-
+    if (iter == 0)
+      return ()
+    
+    val msgs: List[Message] = sender.toSend
+    msgs match {
+      case Nil() => ()
+      case Cons(m, ms) => {
+        if (network.hasSent(m, iter)) {
+          receivedSomeMsgCorrectly(receiver.received, sender.toSend)
+          messageExchangeCorrectness(network, sender.updated, receiver.receive(m), iter - 1)
+        }
+        else
+          messageExchangeCorrectness(network, sender, receiver, iter - 1)
+      }
+    }
   }.ensuring(receivedAllMsgCorrectly(sender, receiver, network.messageExchange(sender, receiver, iter)._2))
 
   /**
@@ -145,7 +170,24 @@ object NetworkProperties {
     require(receivedAllMsgCorrectly(sender, receiver, network.messageExchange(sender, receiver, iter)._2))
 
     /* TODO: Prove me */
-
+    if (iter == 0)
+      return ()
+    
+    val msgs: List[Message] = sender.toSend
+    msgs match {
+      case Nil() => ()
+      case Cons(m, ms) => {
+        if (network.hasSent(m, iter)) {
+          if (receivedAllMsgCorrectly(sender.updated, receiver.receive(m), network.messageExchange(sender.updated, receiver.receive(m), iter - 1)._2))
+            messageExchangeLowerBound(network, sender.updated, receiver.receive(m), iter - 1)
+          else
+            receivedSomeMsgCorrectly(receiver.received, sender.toSend)
+        }
+        else {
+          messageExchangeLowerBound(network, sender, receiver, iter - 1)
+        }
+      }
+    }
   }.ensuring(iter >= sender.toSend.size)
 
 
