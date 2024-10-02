@@ -200,20 +200,44 @@ object NetworkProperties {
     require(iter >= sender.toSend.size)
 
     /* TODO: Prove me */
-
+    val msgs: List[Message] = sender.toSend
+    msgs match {
+      case Nil() => ()
+      case Cons(m, ms) => {
+        if (noLossNetwork.hasSent(m, iter)) {
+          receivedSomeMsgCorrectly(receiver.received, sender.toSend)
+          messageExchangeWithNoLoss(sender.updated, receiver.receive(m), iter - 1)
+        }
+        else
+          ()
+      }
+    }
   }.ensuring(
     receivedAllMsgCorrectly(sender, receiver, noLossNetwork.messageExchange(sender, receiver, iter)._2)
   )
 
   /**
-    * Any network is less efficient then a network that does not loose any packets.
+    * Any network is less efficient than a network that does not loose any packets.
     */
   def noLossNetworkIsOptimal(sender: Endpoint, receiver: Endpoint, iter: BigInt, network: Network): Unit = {
     require(iter >= 0)
     require(receivedAllMsgCorrectly(sender, receiver, network.messageExchange(sender, receiver, iter)._2))
 
     /* TODO: Prove me */
-
+    val msgs: List[Message] = sender.toSend
+    msgs match {
+      case Nil() => ()
+      case Cons(m, ms) => {
+        if (network.hasSent(m, iter)) {
+          if (receivedAllMsgCorrectly(sender.updated, receiver.receive(m), network.messageExchange(sender.updated, receiver.receive(m), iter - 1)._2))
+            noLossNetworkIsOptimal(sender.updated, receiver.receive(m), iter - 1, network)
+          else
+            receivedSomeMsgCorrectly(receiver.received, sender.toSend)
+        }
+        else
+          noLossNetworkIsOptimal(sender, receiver, iter - 1, network)
+      }
+    }
   }.ensuring(receivedAllMsgCorrectly(sender, receiver, noLossNetwork.messageExchange(sender, receiver, iter)._2)) 
 
   /**
