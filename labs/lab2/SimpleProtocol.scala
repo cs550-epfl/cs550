@@ -181,6 +181,7 @@ object NetworkProperties {
           if (receivedAllMsgCorrectly(sender.updated, receiver.receive(m), network.messageExchange(sender.updated, receiver.receive(m), iter - 1)._2))
             messageExchangeLowerBound(network, sender.updated, receiver.receive(m), iter - 1)
           else
+            // trying to reach a contradiction
             receivedSomeMsgCorrectly(receiver.received, sender.toSend)
         }
         else {
@@ -227,7 +228,7 @@ object NetworkProperties {
     if (iter == 0)
       return ()
     
-    // Needed to ensure precondition to messageExchangeWithNoLoss is true.
+    // Needed to ensure precondition to `messageExchangeWithNoLoss` is true.
     messageExchangeLowerBound(network, sender, receiver, iter)
 
     // Directly proves the postcondition.
@@ -243,7 +244,19 @@ object NetworkProperties {
     require(iter >= 0)
 
     /* TODO: Prove me */
-
+    if (iter == 0)
+      return ()
+    
+    val msgs: List[Message] = sender.toSend
+    msgs match {
+      case Nil() => ()
+      case Cons(m, ms) => {
+        if (fullLossNetwork.hasSent(m, iter))
+          () // impossible
+        else
+          messageExchangeWithFullLosses(sender, receiver, iter - 1)
+      }
+    }
   }.ensuring(
     fullLossNetwork.messageExchange(sender, receiver, iter)
       ==
@@ -260,7 +273,27 @@ object NetworkProperties {
     require(receivedAllMsgCorrectly(sender, receiver, fullLossNetwork.messageExchange(sender, receiver, iter)._2))
 
     /* TODO: Prove me */
+    /*
+    if (iter == 0)
+      return ()
 
+    val msgs: List[Message] = sender.toSend
+    msgs match {
+      case Nil() => ()
+      case Cons(m, ms) => {
+        if (fullLossNetwork.hasSent(m, iter))
+          ()
+        else {
+          if (receivedAllMsgCorrectly(sender, receiver, fullLossNetwork.messageExchange(sender, receiver, iter - 1)._2))
+            receivedAllMsgCorrectlyFullLosses(sender, receiver, iter - 1)
+          else
+            ()
+        }
+      }
+    }
+    */
+    messageExchangeWithFullLosses(sender, receiver, iter)
+    assert(receiver.received == receiver.received ++ sender.toSend)
   }.ensuring(!sender.msgQueued)
 
 
@@ -277,7 +310,22 @@ object NetworkProperties {
     require(n > 0)
 
     /* TODO: Prove me */
-
+    if (iter == 0)
+      return ()
+    
+    val msgs: List[Message] = sender.toSend
+    msgs match {
+      case Nil() => ()
+      case Cons(m, ms) => {
+        if (badButPredictableNetwork(n).hasSent(m, iter))
+          ()
+          //messageExchangeBadNetwork(sender.updated, receiver.receive(m), iter - 1, n)
+        else {
+          modMinusOne(iter, n)
+          messageExchangeBadNetwork(sender, receiver, iter - 1, n)
+        }
+      }
+    }
   }.ensuring(
     badButPredictableNetwork(n).messageExchange(sender, receiver, iter)
      ==
