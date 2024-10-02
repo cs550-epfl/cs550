@@ -224,20 +224,14 @@ object NetworkProperties {
     require(receivedAllMsgCorrectly(sender, receiver, network.messageExchange(sender, receiver, iter)._2))
 
     /* TODO: Prove me */
-    val msgs: List[Message] = sender.toSend
-    msgs match {
-      case Nil() => ()
-      case Cons(m, ms) => {
-        if (network.hasSent(m, iter)) {
-          if (receivedAllMsgCorrectly(sender.updated, receiver.receive(m), network.messageExchange(sender.updated, receiver.receive(m), iter - 1)._2))
-            noLossNetworkIsOptimal(sender.updated, receiver.receive(m), iter - 1, network)
-          else
-            receivedSomeMsgCorrectly(receiver.received, sender.toSend)
-        }
-        else
-          noLossNetworkIsOptimal(sender, receiver, iter - 1, network)
-      }
-    }
+    if (iter == 0)
+      return ()
+    
+    // Needed to ensure precondition to messageExchangeWithNoLoss is true.
+    messageExchangeLowerBound(network, sender, receiver, iter)
+
+    // Directly proves the postcondition.
+    messageExchangeWithNoLoss(sender, receiver, iter)
   }.ensuring(receivedAllMsgCorrectly(sender, receiver, noLossNetwork.messageExchange(sender, receiver, iter)._2)) 
 
   /**
