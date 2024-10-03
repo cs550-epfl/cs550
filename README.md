@@ -59,45 +59,46 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      |     |            |   |   | Reading:                       | HandMC-Ch.10  |
 |      |     |            |   |   | Follow:                        | [Stainless Tutorial Videos](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_t2ld6vzn/0_azxgetu9) and [materials](https://epfl-lara.github.io/asplos2022tutorial/)  |
 |      | Fri | 13.09.2024 | 13:15 | [INR219](https://plan.epfl.ch/?room==INR%20219) | [Lecture 3](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_tv48ew7w)                       | [What is a Formal Proof?](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_tv48ew7w) and [Propositional Resolution](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_lovmc46b) |
-| 2    | Thu | 19.09.2024 | 15:15 | GRA330 | Lecture 2 | continue [Propositional Resolution](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_lovmc46b) |
+| 2    | Thu | 19.09.2024 | 15:15 | GRA330 | [Lecture 4](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_1c4580tg/0_lovmc46b) [PDF](lectures/prop-resolution.pdf) | continue [Propositional Resolution](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_lovmc46b) |
 |      |     |            | 17:15 | GRA330 | [Lab 1](labs/lab1/README.md) | |
 |      | Fri | 20.09.2024 | 13:15 | INR219 | [Exercises 1](exercises/Exercises1) | Propositional Logic |
-|      | Thu | 26.09.2024 | 15:15 | GRA330 | | |
+|      |     |            |   |   | Reading:                       | CalComp-Ch.1 ∨ HandAR-Ch.2 |
+| 3    | Thu | 26.09.2024 | 15:15 | GRA330 | [Lecture 5](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_x3485b9h/0_hmbkv363) [PDF](lectures/fol.pdf) | SAT solving from [Propositional Resolution](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_thr9uebs/0_lovmc46b). Start [Automating First-Order Logic Proofs Using Resolution ](https://mediaspace.epfl.ch/media/06-01%2C%20Automating%20First-Order%20Logic%20Proofs%20Using%20Resolution/0_hmbkv363) |
 |      |     |            | 17:15 | GRA330 | [Lab 2](labs/lab2/README.md) | A communication protocol in Stainless |
 |      | Fri | 27.09.2024 | 13:15 | INR219 | [Exercises 2](exercises/Exercises2) | Traces, SAT, models |
-|      | Thu | 03.10.2024 | 15:15 | GRA330 | | |
-|      |     |            | 17:15 | GRA330 | [Lab 3](labs/lab3/README.md) | Resolution Proof Checker |
-|      | Fri | 04.10.2024 | 13:15 | INR219 | | |
-|      | Thu | 10.10.2024 | 15:15 | GRA330 | | |
+| 4    | Thu | 03.10.2024 | 15:15 | GRA330 | Lecture 6 | Continue [Automating First-Order Logic using Resolution](https://mediaspace.epfl.ch/media/06-01%2C%20Automating%20First-Order%20Logic%20Proofs%20Using%20Resolution/0_hmbkv363). [Term Models for First-Order Logic](https://mediaspace.epfl.ch/media/06-03+Term+Models+for+First-Order+Logic/0_jnuljf9n/30542)
+|      |     |            | 17:15 | GRA330 | [Lab 3](labs/lab3/README.md) | FOL Resolution |
+|      | Fri | 04.10.2024 | 13:15 | INR219 | Exercises |            |
+| 5    | Thu | 10.10.2024 | 15:15 | GRA330 | | | 
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 11.10.2024 | 13:15 | INR219 | | |
-|      | Thu | 17.10.2024 | 15:15 | GRA330 | | |
+| 6    | Thu | 17.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 18.10.2024 | 13:15 | INR219 | | |
-|      | Thu | 24.10.2024 | 15:15 |        | Holidays | |
+| -    | Thu | 24.10.2024 | 15:15 |        | Holidays | |
 |      |     |            | 17:15 |        | Holidays | |
 |      | Fri | 25.10.2024 | 13:15 |        | Holidays | |
-|      | Thu | 31.10.2024 | 15:15 | GRA330 | | |
+| 7    | Thu | 31.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 01.11.2024 | 13:15 | INR219 | | |
-|      | Thu | 07.11.2024 | 15:15 | GRA330 | | |
+| 8    | Thu | 07.11.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 08.11.2024 | 13:15 | INR219 | | |
-|      | Thu | 14.11.2024 | 15:15 | GRA330 | | |
+| 9    | Thu | 14.11.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 15.11.2024 | 13:15 | INR219 | | |
-|      | Thu | 21.11.2024 | 15:15 | GRA330 | | |
+| 10   | Thu | 21.11.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 22.11.2024 | 13:15 | INR219 | | |
-|      | Thu | 28.11.2024 | 15:15 | GRA330, AAC114 | Midterm, until 18:00 | |
+| 11   | Thu | 28.11.2024 | 15:15 | **GRA330**, **AAC114** | **Midterm**, until 18:00 | |
 |      | Fri | 29.11.2024 | 13:15 | INR219 | | |
-|      | Thu | 05.12.2024 | 15:15 | GRA330 | | |
+| 12   | Thu | 05.12.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 06.12.2024 | 13:15 | INR219 | | |
-|      | Thu | 12.12.2024 | 15:15 | GRA330 | | |
+| 13   | Thu | 12.12.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 13.12.2024 | 13:15 | INR219 | | |
-|      | Thu | 19.12.2024 | 15:15 | GRA330 | | |
+| 14   | Thu | 19.12.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 20.12.2024 | 13:15 | INR219 | | |
 
