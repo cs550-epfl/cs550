@@ -150,7 +150,7 @@ object BooleanAlgebra {
   }
 
   /**
-    * Substitutes the variables in an AIG formula with other AIG formulas.
+    * Returns the set of variables in an AIG_Formula
     */
   def AIG_variables(f: AIG_Formula): Set[Int] = {
     f match {
