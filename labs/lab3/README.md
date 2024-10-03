@@ -8,7 +8,7 @@ you won't have to prove properties of a program using stainless.
 Instead, you will implement a resolution proof checker in scala.
 We still require that your implementation is accepted by stainless; this will ensure that some basic properties hold, and that all your functions terminate.
 
-The implementation is split across multiple files, but you will only need to change [Resolution.scala](Resolution.scala).
+The implementation is split across multiple files, but you will only need to change [Resolution.scala](src/Resolution.scala).
 We will explain the content of the other files as they become relevant.
 
 For this lab, we provide you with some tests for your code. Use
@@ -31,17 +31,17 @@ The `--watch`, `--timeout=<seconds>` and `--compact` flags might also prove usef
 ### Part one: Transforming formulas
 The first thing to do is to put formulas in a form suitable for clausal resolution.
 
-Have a look at [Formulas.scala](Formulas.scala) to see how identifiers, terms and formulas are described. You can ignore everything after (and including) `Literal` for now.
+Have a look at [Formulas.scala](src/Formulas.scala) to see how identifiers, terms and formulas are described. You can ignore everything after (and including) `Literal` for now.
 It also defines some operations and predicates on them (e.g. `substitute`, `freeVariables`, `containsNoExistential`) which will be useful.
 
 The transformation is done using 5 successive equivalence preserving transformations.
 You must have seen these in class, so we won't describe them in details; 
 please refer to the lectures for complete descriptions.
-- `makeVariableNamesUnique` is already implemented. It renames all variables so that each one is defined only once. You can see its behavior on some examples in [Test.scala](Test.scala).
+- `makeVariableNamesUnique` is already implemented. It renames all variables so that each one is defined only once. You can see its behavior on some examples in [Test.scala](test/Tests.scala).
 - `negationNormalForm` pushes the negation operators as far down the tree as possible.
 - `skolemizationNegation` replaces all existential quantifiers with a skolem function. Note that having the formula in negation normal form and without name repetitions greatly simplifies its implementation. As such, its first step will be to apply the previous transformations.
 - `prenexSkolemizationNegation` pulls all quantifiers to the top of the formula. Once again, this is greatly simplified by the absence of existential quantifiers. This also means that all the quantifiers at the top will be universal quantifiers and can be left implicit; as such, this function should only return the matrix of the formula.
-- `conjunctionPrenexSkolemizationNegation` puts the formula in conjunctive normal form (CNF). Note that from that point on, formulas are represented using `List[List[Literal]]`, so you should have a look at the remainder of [Formulas.scala](Formulas.scala).
+- `conjunctionPrenexSkolemizationNegation` puts the formula in conjunctive normal form (CNF). Note that from that point on, formulas are represented using `List[List[Literal]]`, so you should have a look at the remainder of [Formulas.scala](src/Formulas.scala).
 
 ### Part two: Proof checking
 Once a formula is in conjunctive normal form (i.e. a `List[List[Literal]]`), one can use it to do proofs using resolution.
@@ -75,7 +75,7 @@ Stated more formally:
 \end{align}
 ```
 
-We implemented this in [Mansion.scala](Mansion.scala).
+We implemented this in [Mansion.scala](src/Mansion.scala).
 We also added some additional assumptions, such as commutativity of equality and Leibniz's property for all predicates.
 
 The transformation you implemented are then applied to all of these, resulting in the following assumed clauses:
@@ -125,8 +125,8 @@ This require many steps; we did most of the reasoning for you, you should just a
 ```
 
 ## Submission
-Once you have implemented, you can submit your [Resolution.scala](Resolution.scala) file on [Moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1099233).
+Once you have implemented, you can submit your [src/Resolution.scala](Resolution.scala) file on [Moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1099233).
 
-You are not allowed to change the signature of any function. If you add helper functions, they should be in [Resolution.scala](Resolution.scala).
+You are not allowed to change the signature of any function. If you add helper functions, they should be in [src/Resolution.scala](Resolution.scala).
 
 Only one member of each group should submit a solution.

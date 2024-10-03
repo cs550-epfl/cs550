@@ -63,10 +63,10 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      |     |            | 17:15 | GRA330 | [Lab 1](labs/lab1/README.md) | |
 |      | Fri | 20.09.2024 | 13:15 | INR219 | [Exercises 1](exercises/Exercises1) | Propositional Logic |
 |      | Thu | 26.09.2024 | 15:15 | GRA330 | | |
-|      |     |            | 17:15 | GRA330 | Lab 2 | A communication protocol in Stainless |
-|      | Fri | 27.09.2024 | 13:15 | INR219 | Exercises 2 | Traces, SAT, models |
+|      |     |            | 17:15 | GRA330 | [Lab 2](labs/lab2/README.md) | A communication protocol in Stainless |
+|      | Fri | 27.09.2024 | 13:15 | INR219 | [Exercises 2](exercises/Exercises2) | Traces, SAT, models |
 |      | Thu | 03.10.2024 | 15:15 | GRA330 | | |
-|      |     |            | 17:15 | GRA330 | | |
+|      |     |            | 17:15 | GRA330 | [Lab 3](labs/lab3/README.md) | Resolution Proof Checker |
 |      | Fri | 04.10.2024 | 13:15 | INR219 | | |
 |      | Thu | 10.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
