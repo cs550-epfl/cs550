@@ -88,7 +88,7 @@ object BooleanAlgebra {
   def AIG_eval(f: AIG_Formula, env: Int => Boolean): Boolean = ???
 
   /**
-    * Substitutes the variables in an AIG formula with other AIG formulas.
+    * Returns the set of variables in an AIG_Formula
     */
   def AIG_variables(f: AIG_Formula): Set[Int] = ???
 
