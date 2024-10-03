@@ -13,9 +13,9 @@ object Resolution {
    */
   def makeVariableNamesUnique(f: Formula): Formula = {
     /*
-    * A generator of fresh names
-    * Any call to `get` should be followed by a call to `next`
-    */
+     * A generator of fresh names
+     * Any call to `get` should be followed by a call to `next`
+     */
     case class FreshNames(i: BigInt) {
       require(i >= 0)
 
@@ -71,7 +71,39 @@ object Resolution {
    */
   def negationNormalForm(f: Formula): Formula = {
     /* TODO: Implement me */
-    (??? : Formula)
+    decreases(f)
+    f match {
+      case Predicate(name, children) => Predicate(name, children)
+
+      case And(left, right) => 
+        And(negationNormalForm(left), negationNormalForm(right))
+      case Neg(And(left, right)) =>
+        Or(negationNormalForm(Neg(left)), negationNormalForm(Neg(right)))
+      
+      case Or(left, right) =>
+        Or(negationNormalForm(left), negationNormalForm(right))
+      case Neg(Or(left, right)) =>
+        And(negationNormalForm(Neg(left)), negationNormalForm(Neg(right)))
+          
+      case Implies(left, right) => 
+        Or(negationNormalForm(Neg(left)), negationNormalForm(right))
+      case Neg(Implies(left, right)) =>
+        And(negationNormalForm(left), negationNormalForm(Neg(right)))
+
+      case Forall(Var(id), inner) => 
+        Forall(Var(id), negationNormalForm(inner))
+      case Neg(Forall(Var(id), inner)) => 
+        Exists(Var(id), negationNormalForm(Neg(inner)))
+
+      case Exists(Var(id), inner) =>
+        Exists(Var(id), negationNormalForm(inner))
+      case Neg(Exists(Var(id), inner)) =>
+        Forall(Var(id), negationNormalForm(Neg(inner)))
+
+      case Neg(Neg(inner)) => negationNormalForm(inner)
+
+      case _ => f
+    }
   }.ensuring(res =>
     res.isNNF
   )
@@ -84,10 +116,29 @@ object Resolution {
    */
   def skolemizationNegation(f0: Formula): Formula = {
     /* TODO: Implement me */
-    (??? : Formula)
+    val f1 = negationNormalForm(makeVariableNamesUnique(f0))
+    assert(f1.freeVariables.isEmpty)
+    
   }.ensuring(res =>
     res.isNNF && res.containsNoExistential
   )
+
+  /**
+   * Backtracking to transform existential quantifiers into Skolem functions
+   */
+  def skolemization(f: Formula)(using boundedVars: List[Identifier]): Formula = {
+    decreases(f)
+    f match {
+      case Exists(Var(id), inner) =>
+        // Replace all occurances of id in inner with skolem fn
+        val skolemFn = Function(Identifier("skolem_" + id.name), boundedVars.map(Var(_)): _*)
+
+      case Forall(Var(id), inner) =>
+        skolemization(inner)(boundedVars :+ id)
+      case _ =>
+        f
+    }
+  }
 
   /**
    * Perform the following steps:
