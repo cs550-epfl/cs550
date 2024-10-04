@@ -71,7 +71,7 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      |     |            | 17:15 | GRA330 | [Lab 3](labs/lab3/README.md) | FOL Resolution |
 |      |     |            |       |        |                                 | [Provers Proved New Math Results](https://www.mcs.anl.gov/research/projects/AR/new_results/) ([also in NYT](https://archive.nytimes.com/www.nytimes.com/library/cyber/week/1210math.html)), [SPASS Prover on The Web](https://webspass.spass-prover.org/) |
 |      |     |            |       |        | Reading:   | HandAR-Ch.3 |
-|      | Fri | 04.10.2024 | 13:15 | INR219 | Exercises 3 |            |
+|      | Fri | 04.10.2024 | 13:15 | INR219 | [Exercises 3](exercises/Exercises3) |            |
 | 5    | Thu | 10.10.2024 | 15:15 | GRA330 | | | 
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 11.10.2024 | 13:15 | INR219 | | |
