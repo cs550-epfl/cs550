@@ -8,7 +8,7 @@ For example, your project consists in verifying correctness of a certain algorit
 
 You are also asked to write a brief abstract presenting your project. This abstract should span over approximately 10 lines of text and briefly present the scientific context, the motivation behind the project and what you plan to achieve.
 
-You should lock your paper and the topic of your project by Friday, 25th of Octobre (03:59). Write an abstract briefly presenting your project, and indicate the full reference of your paper of choice in a pdf (we recommend using Latex) and send it to us via [moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1227669).
+You should lock your paper and the topic of your project by Friday, 1st of November (03:59). Write an abstract briefly presenting your project, and indicate the full reference of your paper of choice in a pdf (we recommend using Latex) and send it to us via [moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1227669).
 
 
 ## Background Paper Review
