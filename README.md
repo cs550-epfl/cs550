@@ -74,7 +74,7 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      | Fri | 04.10.2024 | 13:15 | INR219 | [Exercises 3](exercises/Exercises3) |            |
 | 5    | Thu | 10.10.2024 | 15:15 | GRA330 | | | 
 |      |     |            | 17:15 | GRA330 | | |
-|      | Fri | 11.10.2024 | 13:15 | INR219 | | |
+|      | Fri | 11.10.2024 | 13:15 | INR219 | [Exercises 4](exercises/Exercises4) | Transition Systems, Hoare Logic, Relations |
 | 6    | Thu | 17.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 18.10.2024 | 13:15 | INR219 | | |
