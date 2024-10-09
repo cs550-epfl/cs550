@@ -83,11 +83,11 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      | Fri | 25.10.2024 | 13:15 |        | Holidays | |
 | 7    | Thu | 31.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
-|      |     |            |       |        | | [Deadline to pick your project topic and Background Paper](project/Background Paper Review.md) |
+|      |     |            |       |        | | [Deadline to pick your project topic and Background Paper](project/README.md) |
 |      | Fri | 01.11.2024 | 13:15 | INR219 | | |
 | 8    | Thu | 07.11.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
-|      |     |            |       |        | | [Deadline to write your Background Paper Review](project/Background Paper Review.md) |
+|      |     |            |       |        | | [Deadline to write your Background Paper Review](project/README.md) |
 |      | Fri | 08.11.2024 | 13:15 | INR219 | | |
 | 9    | Thu | 14.11.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
