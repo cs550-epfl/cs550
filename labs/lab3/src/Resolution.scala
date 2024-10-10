@@ -73,8 +73,6 @@ object Resolution {
     /* TODO: Implement me */
     decreases(f)
     f match {
-      case Predicate(name, children) => Predicate(name, children)
-
       case And(left, right) => 
         And(negationNormalForm(left), negationNormalForm(right))
       case Neg(And(left, right)) =>
@@ -109,6 +107,37 @@ object Resolution {
   )
 
   /**
+   * Backtracking to transform existential quantifiers into Skolem functions
+   */
+  def skolemization(f: Formula)(using subst: Map[Identifier, Term],
+                                      quantified: List[Identifier]): Formula = {
+    require(f.isNNF)
+    decreases(f)
+    f match {
+      case Exists(Var(id), inner) => {
+        // Replace all occurances of id in inner with skolem fn
+        val skolemFn = Function(Named("skolem_" + id.toString()), quantified.map(Var(_)) )
+        skolemization(inner)(using subst + (id -> skolemFn), quantified)
+      }
+      case Forall(Var(id), inner) =>
+        Forall(Var(id), skolemization(inner)(using subst, quantified :+ id))
+      
+      case Predicate(name, children) =>
+        Predicate(name, children.map(_.substitute(subst)))
+      case And(left, right) =>
+        And(skolemization(left), skolemization(right))
+      case Or(left, right) =>
+        Or(skolemization(left), skolemization(right))
+      case Implies(left, right) =>
+        Implies(skolemization(left), skolemization(right)) // TODO: convert to NNF
+      case Neg(inner) =>
+        Neg(skolemization(inner))
+    }
+  }.ensuring(res => 
+    res.isNNF && res.containsNoExistential  
+  )
+
+  /**
    * Perform the following steps:
    * - Make variable names unique (using [[makeVariableNamesUnique]]);
    * - Put the formula in negation normal form (using [[negationNormalForm]]);
@@ -117,37 +146,43 @@ object Resolution {
   def skolemizationNegation(f0: Formula): Formula = {
     /* TODO: Implement me */
     val f1 = negationNormalForm(makeVariableNamesUnique(f0))
-    assert(f1.freeVariables.isEmpty)
-    
+    //assert(f1.freeVariables.isEmpty)
+    skolemization(f1)(using Map.empty, List.empty)
+    //negationNormalForm(f2)
   }.ensuring(res =>
     res.isNNF && res.containsNoExistential
   )
 
   /**
-   * Backtracking to transform existential quantifiers into Skolem functions
+   * 
    */
-  def skolemization(f: Formula)(using boundedVars: List[Identifier]): Formula = {
+  def prenex(f: Formula): Formula = {
+    require(f.containsNoExistential && f.isNNF)
     decreases(f)
     f match {
+      case Predicate(name, children) => f
+      case And(left, right) => And(prenex(left), prenex(right))
+      case Or(left, right) => Or(prenex(left), prenex(right))
+      case Implies(left, right) => Implies(prenex(left), prenex(right)) // TODO: convert to NNF
+      case Neg(inner) => Neg(prenex(inner))
+      case Forall(Var(id), inner) => prenex(inner)
+      // This case does not exist.
       case Exists(Var(id), inner) =>
-        // Replace all occurances of id in inner with skolem fn
-        val skolemFn = Function(Identifier("skolem_" + id.name), boundedVars.map(Var(_)): _*)
-
-      case Forall(Var(id), inner) =>
-        skolemization(inner)(boundedVars :+ id)
-      case _ =>
-        f
+        Exists(Var(id), prenex(inner))
     }
-  }
+  }.ensuring(res =>
+    res.isNNF && res.containsNoUniversal && res.containsNoExistential
+  )
 
   /**
    * Perform the following steps:
    * - Put the formula in negation normal, skolemized form (using [[skolemizationNegation]]);
-   * - Return the matrix of the formula.
+   * - Return the matrix? of the formula.
    */
   def prenexSkolemizationNegation(f: Formula): Formula = {
     /* TODO: Implement me */
-    (??? : Formula)
+    val _f = skolemizationNegation(f)
+    prenex(_f)
   }.ensuring(res =>
     res.isNNF && res.containsNoUniversal && res.containsNoExistential
   )

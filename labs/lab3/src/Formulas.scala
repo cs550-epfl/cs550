@@ -42,9 +42,9 @@ object Formulas {
       unique(fv)
     }.ensuring(ListOps.noDuplicate(_))
 
-    /*
-    * Performs simultaneous substitution of Vars by Terms.
-    */
+    /**
+     * Performs simultaneous substitution of Vars by Terms.
+     */
     def substitute(subst: Map[Identifier, Term]): Term = {
       this match {
         case Var(v) => subst.getOrElse(v, this)
