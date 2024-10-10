@@ -72,8 +72,7 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      |     |            |       |        |                                 | [Provers Proved New Math Results](https://www.mcs.anl.gov/research/projects/AR/new_results/) ([also in NYT](https://archive.nytimes.com/www.nytimes.com/library/cyber/week/1210math.html)), [SPASS Prover on The Web](https://webspass.spass-prover.org/) |
 |      |     |            |       |        | Reading:   | HandAR-Ch.3 |
 |      | Fri | 04.10.2024 | 13:15 | INR219 | [Exercises 3](exercises/Exercises3) |            |
-| 5    | Thu | 10.10.2024 | 15:15 | GRA330 | | | 
-|      |     |            | 17:15 | GRA330 | | |
+| 5    | Thu | 10.10.2024 | 15:15 | GRA330 | [Lecture 7](https://mediaspace.epfl.ch/playlist/dedicated/30542/0_i70unjji/): [vcgen.pdf](lectures/lec07-vcgen.pdf) [Hoare.pdf](lectures/lec07-hoare.pdf) | [Converting Imperative Programs to Formulas](https://mediaspace.epfl.ch/media/07-01%2C+Converting+Imperative+Programs+to+Formulas/0_a525ptjc), [Hoare Logic, Strongest Postcondition, Weakest Precondition](https://mediaspace.epfl.ch/media/08-01%2C+Hoare+Logic%2C+Strongest+Postcondition%2C+Weakest+Precondition/0_8ebxh5n4) | 
 |      | Fri | 11.10.2024 | 13:15 | INR219 | [Exercises 4](exercises/Exercises4) | Transition Systems, Hoare Logic, Relations |
 | 6    | Thu | 17.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
@@ -83,9 +82,11 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 |      | Fri | 25.10.2024 | 13:15 |        | Holidays | |
 | 7    | Thu | 31.10.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
+|      |     |            |       |        | | [Deadline to pick your project topic and Background Paper](project/README.md) |
 |      | Fri | 01.11.2024 | 13:15 | INR219 | | |
 | 8    | Thu | 07.11.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
+|      |     |            |       |        | | [Deadline to write your Background Paper Review](project/README.md) |
 |      | Fri | 08.11.2024 | 13:15 | INR219 | | |
 | 9    | Thu | 14.11.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
