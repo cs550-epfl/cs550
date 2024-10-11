@@ -5,6 +5,8 @@ import stainless.lang.Map.ToMapOps
 
 import Utils.*
 import Formulas.*
+import Resolution.MansionFragments.charlesInnocent
+import Formulas.Literal
 
 object Resolution {
   /**
@@ -187,6 +189,36 @@ object Resolution {
     res.isNNF && res.containsNoUniversal && res.containsNoExistential
   )
 
+  /** 
+   *
+   */
+  def conjunction(f: Formula): List[Clause] = {
+    f match {
+      case p@Predicate(name, children) =>
+        List(List(Literal(p)))
+      case Or(left, right) => {
+        val _left:  List[Clause] = conjunction(left)
+        val _right: List[Clause] = conjunction(right)
+        _left.foldLeft(List.empty[Clause])((wip: List[Clause], cl: Clause) => 
+          wip ++ _right.map((cr: Clause) => cr ++ cl)
+        )
+        // `stainless` `List` does not support `foreach` method, thus no
+        // support for `<-` syntactic sugar.
+        /*
+        var res = List.empty[Clause]
+        for (l <- _left) {
+          for (r <- _right) {
+            res = res :+ (l ++ r)
+          }
+        }
+        res
+        */
+      }
+      case And(left, right) =>
+        conjunction(left) ++ conjunction(right)
+      case _ => List.empty[Clause]
+    }
+  }
 
   /**
    * Perform the following steps:
@@ -199,7 +231,8 @@ object Resolution {
    */
   def conjunctionPrenexSkolemizationNegation(f: Formula): List[Clause] = {
     /* TODO: Implement me */
-    (??? : List[Clause])
+    val _f = prenexSkolemizationNegation(f)
+    conjunction(_f)
   }
 
   /* Part two: proof checking */
