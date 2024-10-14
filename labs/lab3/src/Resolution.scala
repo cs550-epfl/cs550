@@ -279,7 +279,35 @@ object Resolution {
    */
   def checkResolutionProof(proof: ResolutionProof): ProofCheckResult = {
     /* TODO: Implement me */
-    (??? : ProofCheckResult)
+    val assumptions = this.assumptions(proof)
+    val conclusion = this.conclusion(proof)
+
+    def verifyProofStep(index: BigInt, step: (Clause, Justification)): ProofCheckResult = {
+      val clause = step._1
+      val justification = step._2
+
+      justification match {
+        case Assumed => Valid
+        case Deduced((i, j), subst) => {
+          if (i >= index || j >= index) {
+            Invalid("Deduced step refers to a future step")
+          }
+
+          // Do work here.
+
+          Valid
+        }
+        case _ => Invalid()
+      }
+    }
+
+    // Go through each step of the resolution proof and verify each clause is valid or not. If any step is invalid, return invalid.
+    proof.foldLeft[ProofCheckResult](Valid)((res, step) =>
+      res match {
+        case Valid => verifyProofStep(proof.indexOf(step), step)
+        case _ => res // Invalid Case
+      }
+    )
   }
 
   def assumptions(proof: ResolutionProof): List[Clause] = {
