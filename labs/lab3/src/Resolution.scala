@@ -200,7 +200,7 @@ object Resolution {
         val _left:  List[Clause] = conjunction(left)
         val _right: List[Clause] = conjunction(right)
         _left.foldLeft(List.empty[Clause])((wip: List[Clause], cl: Clause) => 
-          wip ++ _right.map((cr: Clause) => cr ++ cl)
+          wip ++ _right.map((cr: Clause) => cl ++ cr)
         )
         // `stainless` `List` does not support `foreach` method, thus no
         // support for `<-` syntactic sugar.
