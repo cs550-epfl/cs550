@@ -279,8 +279,6 @@ object Resolution {
    */
   def checkResolutionProof(proof: ResolutionProof): ProofCheckResult = {
     /* TODO: Implement me */
-    val assumptions = this.assumptions(proof)
-    val conclusion = this.conclusion(proof)
 
     def verifyProofStep(index: BigInt, step: (Clause, Justification)): ProofCheckResult = {
       val clause = step._1
@@ -292,12 +290,30 @@ object Resolution {
           if (i >= index || j >= index) {
             Invalid("Deduced step refers to a future step")
           }
+          
+          if (i < 0 || j < 0 || i >= proof.length || j >= proof.length) {
+            Invalid("Deduced step is invalid")
+          } else {
+            // Obtain the two previous clauses in substituted form
+            var c1: Clause = proof(i)._1.map(literal => literal.substitute(subst))
+            var c2: Clause = proof(j)._1.map(literal => literal.substitute(subst))
+    
+            // Based on causal resolution, we need to determine a literal l such that, 
+            // WLOG, C1 = C1' \union {l} and C2 = C2' \union {~l}
+            // First, list all pairs of literals from C1 and C2
+            val potentialPairs : List[(Literal, Literal)] = c1.flatMap(lit1 => c2.map(lit2 => (lit1, lit2)))
+            potentialPairs.find { case (lit1, lit2) => 
+              // The step is valid if ({l}, {~l}) is present AND the rest of the literals
+              // from C1 and C2 are in clause (i.e. C1' \union C2' == clause)
+              (lit1 == lit2.negation) &&
+              (c1.filterNot(_ == lit1) ++ c2.filterNot(_ == lit2)).toSet == clause.toSet // We can use Set() since clauses are disjunctions
+            } match {
+              case Some(_) => Valid
+              case None() => Invalid("no steps found")
+            }
+          }
 
-          // Do work here.
-
-          Valid
         }
-        case _ => Invalid()
       }
     }
 
