@@ -216,6 +216,12 @@ object Resolution {
       }
       case And(left, right) =>
         conjunction(left) ++ conjunction(right)
+      case Neg(inner) => inner match {
+        case Predicate(_name, _children) =>
+          List(List(Literal(Neg(Predicate(_name, _children))))
+        )
+        case _ => List.empty[Clause]
+      }
       case _ => List.empty[Clause]
     }
   }
