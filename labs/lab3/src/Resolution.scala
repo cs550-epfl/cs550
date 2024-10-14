@@ -118,7 +118,7 @@ object Resolution {
     f match {
       case Exists(Var(id), inner) => {
         // Replace all occurances of id in inner with skolem fn
-        val skolemFn = Function(Named("skolem_" + id.toString()), quantified.map(Var(_)) )
+        val skolemFn = Function(id, quantified.map(Var(_)) )
         skolemization(inner)(using subst + (id -> skolemFn), quantified)
       }
       case Forall(Var(id), inner) =>
