@@ -358,6 +358,9 @@ object Resolution {
     def charlesInnocent: ResolutionProof = {
       List(
         /* TODO: Complete me */
+        ( List(hates(a, a)), Deduced((10, 15), Map(id(6) -> a))),
+        ( List(hates(c, a).negation), Deduced((21, 8), Map(id(4) -> a)) ),
+        ( List(killed(c, a).negation), Deduced((6,22), Map(id(2) -> c, id(3) -> a) ))
       )
     }
 
@@ -371,6 +374,8 @@ object Resolution {
      */
     def agathaKilledAgatha(k: BigInt): ResolutionProof = {List(
         /* TODO: Complete me */
+        ( List(eqv(killer, a)), Deduced((k-9, k-1), Map())),
+        ( List(killed(a, a)), Deduced((k-11, k) , Map(id(16) -> a) ) )
       )
     }
   }
