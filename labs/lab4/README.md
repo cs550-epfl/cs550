@@ -10,28 +10,17 @@ Producing proofs is generaly a burden to very advanced decision procedure, as it
 
 ### The Lab
 In this Lab, you will use LISA, a proof assistant developed in the LARA.
-The first step for you is to read [the first chapter of the user manual](https://github.com/epfl-lara/lisa/blob/main/Reference%20Manual/lisa.pdf) and to install LISA as per the instruction. Once you've followed all the installation, run
+The first step for you is to read [the first chapter of the user manual](https://github.com/epfl-lara/lisa/blob/main/refman/lisa.pdf). You do not need to insally Lisa manually. To check the theorems in the file [Lab04.scala], run 
 ```
-git switch Lab04
-```
-Then start sbt with
-```
-sbt
-```
-and finally within sbt's environment,
-```
-project fv-lab04
+scala-cli run .\Lab04.scala --dependency "ch.epfl.lara::lisa::0.7,url=https://github.com/epfl-lara/lisa/releases/download/0.7/lisa_3-0.7.jar"
 ```
 
-If you now hit `run`, you'll see 3 theorems printed in green and 6 in yellow. Those correspond to the 9 theorems you can find in the file 
+You will see 3 theorems printed in green and 6 in yellow. Those correspond to the 9 theorems you can find in the file 
 
-```
-fv-lab04/src/main/scala/Lab04.scala
-``` 
 
 Your goal for this Lab is to is to complete the proofs of the last 6 theorems so that they are all accepted.
-Read carefuly the first chapter of LISA's user manual, and the 3 proofs given as example: They contain all the tools needed to complete the proofs. Keep the last theorem, `richGrandfather`, for last: It is significantly more challenging.
+Read carefuly the first chapter of LISA's user manual, and the 3 proofs given as example: They contain all the tools needed to complete the proofs. Keep the last two theorems, `richGrandfather` and `greenDragonsAreHappy`, for last: they are more challenging.
 
-You may use any tactic described in the user manual, but the tactics shown in the comment at the begining of the Lab04.scala file are all you need. Make sure to read the examples attentively to understand the syntax.
+You may use any tactic described in the user manual except for the `Tableau` and `Goeland` tactics, but the tactics shown in the comment at the begining of the Lab04.scala file are all you need. Make sure to read the examples attentively to understand the syntax.
 
 When you've finished, upload your file Lab04.scala on [moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1100580) (one submission per group).
