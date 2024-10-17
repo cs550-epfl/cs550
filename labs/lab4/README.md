@@ -12,7 +12,7 @@ Producing proofs is generaly a burden to very advanced decision procedure, as it
 In this Lab, you will use LISA, a proof assistant developed in the LARA.
 The first step for you is to read [the first chapter of the user manual](https://github.com/epfl-lara/lisa/blob/main/refman/lisa.pdf). You do not need to insally Lisa manually. To check the theorems in the file [Lab04.scala], run 
 ```
-scala-cli run .\Lab04.scala --dependency "ch.epfl.lara::lisa::0.7,url=https://github.com/epfl-lara/lisa/releases/download/0.7/lisa_3-0.7.jar"
+scala-cli run .
 ```
 
 You will see 3 theorems printed in green and 6 in yellow. Those correspond to the 9 theorems you can find in the file 

@@ -1,5 +1,6 @@
-
 //> using scala "3.5.1"
+//> using dep "ch.epfl.lara::lisa::0.7,url=https://github.com/epfl-lara/lisa/releases/download/0.7/lisa_3-0.7.jar"
+
 object Lab04 extends lisa.Main {
 
     /*
