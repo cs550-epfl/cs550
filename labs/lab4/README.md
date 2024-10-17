@@ -23,4 +23,4 @@ Read carefuly the first chapter of LISA's user manual, and the 3 proofs given as
 
 You may use any tactic described in the user manual except for the `Tableau` and `Goeland` tactics, but the tactics shown in the comment at the begining of the Lab04.scala file are all you need. Make sure to read the examples attentively to understand the syntax.
 
-When you've finished, upload your file Lab04.scala on [moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1100580) (one submission per group).
+When you've finished, upload your file Lab04.scala on [moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1100580) (one submission per group). The deadline for this lab is Friday 01 November, 03:59am.
