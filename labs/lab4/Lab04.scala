@@ -46,15 +46,15 @@ object Lab04 extends lisa.Main {
     val thm2 = Theorem ( (∀(x,  Q(x)) /\ ∀ (x, R(x))) <=> ∀(x, Q(x) /\ R(x)) ) {
 
         //Here we prove the two directions of <=> separately and then combine them.
-        val forward = have((∀(x,  Q(x)), ∀ (x, R(x))) |- ∀(x, Q(x) /\ R(x))) subproof {
+        val forward = have((∀(x,  Q(x)), ∀(x, R(x))) |- ∀(x, Q(x) /\ R(x))) subproof {
             have((Q(x), R(x)) |- Q(x) /\ R(x)) by Restate
-            thenHave((∀(x,  Q(x)), R(x)) |- Q(x) /\ R(x)) by LeftForall
-            thenHave((∀(x,  Q(x)), ∀ (x, R(x))) |- Q(x) /\ R(x)) by LeftForall
+            thenHave((∀(x, Q(x)), R(x)) |- Q(x) /\ R(x)) by LeftForall
+            thenHave((∀(x, Q(x)), ∀(x, R(x))) |- Q(x) /\ R(x)) by LeftForall
             thenHave(thesis) by RightForall
         }
 
         //The second direction
-        val backward = have( ∀(x, Q(x) /\ R(x)) |- ∀(x,  Q(x)) /\ ∀ (x, R(x))) subproof {
+        val backward = have( ∀(x, Q(x) /\ R(x)) |- ∀(x,  Q(x)) /\ ∀(x, R(x)) ) subproof {
             assume(∀(x, Q(x) /\ R(x)))
             val assump = have(Q(x) /\ R(x)) by InstantiateForall
             have(Q(x)) by Weakening(assump)
@@ -85,24 +85,31 @@ object Lab04 extends lisa.Main {
 
     // This Theorem should be straightforward: You simply need to apply the ∀ and the ∃ quantifiers in the good order.
     val thm4 = Theorem( (∀(x, Q(x) ==> P), ∃(x, Q(x))) |- P ) {
-        sorry
+        assume(∀(x, Q(x) ==> P))
+        val instance = have(Q(x) ==> P) by InstantiateForall
+        //val same = have(∃(x, Q(x))) by ???
+        have(thesis) by Tautology.from(instance)
     }
 
     // This theorem is also short. 
     val thm5 = Theorem( ! ∀(x, Q(x)) |- ∃(x, !Q(x)) ) {
-        sorry
+        assume(! ∀(x, Q(x)))
+        have(∃(x, !Q(x))) by Restate // What is alpha equivalence?
+        thenHave(thesis)
     }
 
     // Quantifiers are not very nice to use.
     // The following theorem, called Russel's Paradox in Set theory, is equivalent to |- !∃(x, ∀(y, (y ∈ x) <=> !(y ∈ y)))
     // If we can, we prefer to avoid using the top level quantifier! Here x is a free parameter: The sequent is true for any term substituted for x.
     val thm6 = Theorem( ∀(y, (y ∈ x) <=> !(y ∈ y)) |- () ) {
-        sorry
+        assume(∀(y, (y ∈ x) <=> !(y ∈ y)))
+        val paradox = have((y ∈ x) <=> !(y ∈ y)) by InstantiateForall
+        have(thesis) by Tautology.from(paradox of (y := x)) // Why can I not rename `x`?
     }
 
     //Again, free variables in a sequent are implicitly universaly quantified: The statement hold with any term substituted for x.
     val thm7 = Theorem( (Q(x), R(x)) |- ∃(y, Q(y)) /\ ∃(y, R(y)) )  {
-        sorry
+        assume(Q(x), R(x))
     }
 
     // This theorem is a bit more involved
