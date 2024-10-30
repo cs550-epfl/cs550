@@ -108,13 +108,44 @@ object Lab04 extends lisa.Main {
     }
 
     //Again, free variables in a sequent are implicitly universaly quantified: The statement hold with any term substituted for x.
-    val thm7 = Theorem( (Q(x), R(x)) |- ∃(y, Q(y)) /\ ∃(y, R(y)) )  {
-        assume(Q(x), R(x))
+    val thm7 = Theorem( (Q(x), R(x)) |- (∃(y, Q(y)) /\ ∃(y, R(y))) )  {
+        val distribute = have(∃(x, Q(x) /\ R(x))  |- (∃(y, Q(y)) /\ ∃(y, R(y)))) subproof {
+            assume(∃(x, Q(x) /\ R(x)))
+            val assump = have(∃(x, Q(x) /\ R(x))) by Restate
+            val q = have( ∃(y, Q(y)) ) by Weakening(assump) of (x:=y)
+            val r = have( ∃(y, R(y)) ) by Weakening(assump) of (x:=y)
+            have(thesis ) by Tautology.from(q, r)
+        }
+        have((Q(x), R(x)) |- Q(x) /\ R(x)) by Restate
+        val e = thenHave((Q(x), R(x)) |- ∃(x, Q(x) /\ R(x))) by RightExists
+        have(thesis) by Tautology.from(e, distribute)
     }
 
     // This theorem is a bit more involved
     val thm8 = Theorem( ∃(y, ∀(x, Q(y) ==> Q(x) )) ) {
-        sorry
+        val qInvalid = have(∃(y, !Q(y)) |- ∃(y, ∀(x, Q(y) ==> Q(x)))) subproof {
+            /*
+            assume(!Q(y))
+            have(Q(y) ==> Q(x)) by Restate
+            thenHave(∀(x, Q(y) ==> Q(x))) by RightForall
+            thenHave(∃(y, ∀(x, Q(y) ==> Q(x)))) by RightExists
+            thenHave(thesis) by LeftExists
+            */
+            have(!Q(y) |- !Q(y)) by Restate
+            thenHave(!Q(y) |- (Q(y) ==> Q(x))) by Restate
+            thenHave(!Q(y) |- ∀(x, Q(y) ==> Q(x))) by RightForall
+            thenHave(!Q(y) |- ∃(y, ∀(x, Q(y) ==> Q(x)))) by RightExists
+            thenHave(thesis) by LeftExists
+        }
+        
+        val qValid = have( ∀(y, Q(y)) |- ∃(y, ∀(x, Q(y) ==> Q(x)))) subproof {
+            assume(∀(y, Q(y)))
+            have(∀(x, Q(x))) by Restate of (y := x)
+            thenHave(∀(x, Q(y) ==> Q(x))) by Weakening
+            thenHave(thesis) by RightExists
+        }
+        
+        have(thesis) by Tautology.from(qInvalid, qValid)
     }
 
 
