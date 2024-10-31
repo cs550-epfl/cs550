@@ -2,7 +2,7 @@
 
 ### The Lab
 In this Lab, you will use LISA to show some properties of lattices, and implement a proof tactic for lattices corresponding to Whitman's algorithm.
-To check the theorems in the file [Lab04.scala], run 
+To check the theorems in the file [Lab05.scala], run 
 ```
 scala-cli run .
 ```
