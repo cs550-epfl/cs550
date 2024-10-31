@@ -156,8 +156,55 @@ object Lab04 extends lisa.Main {
     val father = function[1]
     val rich = predicate[1]
 
+    /* 
+     * 0) either a person or their father is rich
+     * 1) pick arbitrary x0 who's rich
+     * 2) x0 must have poor grandfather (negation of conclusion)
+     *
+     * case 1) if x0 has poor father, violate premise
+     *
+     * case 2) if x0 has rich father (RFx0), then x0's greatgrandpa is poor (FFFx0) (negation of conclusion)
+     *          x0's poor grandfather has a poor father (FFFx0), violate premise !RFFx0 ===> RFFFx0
+     */
     val richGrandfather = Theorem(∀(x, !rich(x) ==> rich(father(x))) |- ∃(x, rich(x) /\ rich(father(father(x)))) ) {
-        sorry
+        assume(∀(x, !rich(x) ==> rich(father(x))))
+
+        val contradiction = have(∀(x, !rich(x) ==> rich(father(x))) /\ !(∃(x, rich(x) /\ rich(father(father(x))))) |- ()) subproof {
+            assume(∀(x, !rich(x) ==> rich(father(x))))
+            assume(!(∃(x, rich(x) /\ rich(father(father(x))))))
+            
+            have(!rich(x) ==> rich(father(x))) by InstantiateForall
+            val premise = thenHave(rich(x) \/ rich(father(x))) by Restate
+            have(∀(x, !rich(x) \/ !rich(father(father(x))))) by Restate
+            val negConclusion = thenHave(!rich(x) \/ !rich(father(father(x)))) by InstantiateForall(x)
+
+            val contr = have ( rich(x) |- ()) subproof {
+                assume(rich(x))
+                val poorGrandpa = have( !rich(father(father(x)))) by Tautology.from(negConclusion)
+
+                val poorFather = have( !rich(father(x)) |- ()) subproof {
+                    assume(!rich(father(x)))
+                    val c = have(rich(father(x)) \/ rich(father(father(x)))) by Tautology.from(premise of (x := father(x)))
+
+                    have(thesis) by Tautology.from(c, poorGrandpa)
+                }
+                
+                val richFather = have( rich(father(x)) |- ()) subproof{
+                    assume(rich(father(x)))
+                    have(!rich(father(x)) \/ !rich(father(father(father(x))))) by Tautology.from(negConclusion of (x := father(x)))
+                    val poorGrGrandpa = thenHave(!rich(father(father(father(x))))) by Restate // tautalogy?? 
+                    
+                    val substitutedPremise = have(rich(father(father(x)))  \/  rich(father(father(father(x))))) by Tautology.from(premise of (x:= father(father(x))))
+                    have(thesis) by Tautology.from(poorGrGrandpa, poorGrandpa, substitutedPremise)
+                }
+
+                have(thesis) by Tautology.from(poorFather, richFather)
+            }
+            
+            have(thesis) by Tautology.from(contr, contr of (x:= father(x)), premise) 
+        }
+
+        have(thesis) by Tautology.from(contradiction)
     }
 
 
@@ -173,10 +220,18 @@ object Lab04 extends lisa.Main {
         ∀(x, ( ∃(y, green(y) /\ child(y, x)) ==> green(x) ) )    // A dragon is green if it is a child of at least one green dragon
     ) |- ∀(x, green(x) ==> happy(x))                             // All green dragons are happy
     ) {
-        sorry
+        assume(∀(x, ( ∀(y, child(x, y) ==> canFly(y)) ==> happy(x) ) ))
+        assume(∀(x, canFly(x)))
+        assume(∀(x, ( ∃(y, green(y) /\ child(y, x)) ==> green(x) )))
+        
+        have(canFly(y)) by InstantiateForall of (x := y)
+        thenHave(child(x, y) ==> canFly(y)) by Weakening // Why not `Restate`?
+        val p = thenHave(∀(y, child(x, y) ==> canFly(y))) by RightForall
+
+        val q = have(∀(y, child(x, y) ==> canFly(y)) ==> happy(x)) by InstantiateForall
+        have(happy(x)) by Tautology.from(p, q) // or `Restate`?
+        thenHave(green(x) ==> happy(x)) by Weakening // Why not `Restate`?
+        
+        thenHave(thesis) by RightForall
     }
-
-
-
-
 }
