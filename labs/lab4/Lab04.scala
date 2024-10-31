@@ -131,7 +131,7 @@ object Lab04 extends lisa.Main {
 
     val greenDragonsAreHappy = Theorem((
         ∀(x, ( ∀(y, child(x, y) ==> canFly(y)) ==> happy(x) ) ), // A dragon is happy if all its children can fly
-        ∀(x, canFly(x)),                                         // Green dragons can fly
+        ∀(x, canFly(x)),                                         // Dragons can fly
         ∀(x, ( ∃(y, green(y) /\ child(y, x)) ==> green(x) ) )    // A dragon is green if it is a child of at least one green dragon
     ) |- ∀(x, green(x) ==> happy(x))                             // All green dragons are happy
     ) {
