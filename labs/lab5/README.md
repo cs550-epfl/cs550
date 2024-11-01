@@ -26,9 +26,9 @@ This algorithm is also complete: It will accept every statement that is true in 
 
 Implemented like this, the algorithm is exponential. However observe that throughout execution, `solveLEQ` will only receive as arguments subterms of the two original arguments: In particular, it is necessary to evaluate it on only at most $\mathcal O(n^2)$ arguments. With memoization, we would obtain a quadratic algorithm, but we won't do that in today's Lab for simplicity.
 
-Now, implement a proof-producing variant of Whitman's algorithm, using the skeleton provided in Lab04.scala. Cases 1 is already implemented to help you. In particular, note that is is possible to test if a tactic succeeds by simply calling the tactic without the `have` keyword. Indeed, a tactic is a function that returns a `ProofTacticJudgement`, which can be either `Valid` if the tactic succeeded or `Invalid` otherwise. On can then test that with `isValid` as shown in the cases 1 given as examples.
+Now, implement a proof-producing variant of Whitman's algorithm, using the skeleton provided in Lab05.scala. Cases 1 is already implemented to help you. In particular, note that is is possible to test if a tactic succeeds by simply calling the tactic without the `have` keyword. Indeed, a tactic is a function that returns a `ProofTacticJudgement`, which can be either `Valid` if the tactic succeeded or `Invalid` otherwise. On can then test that with `isValid` as shown in the cases 1 given as examples.
 
-When you've finished, upload your file Lab04.scala on [moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1269436) (one submission per group).
+When you've finished, upload your file Lab05.scala on [moodle](https://moodle.epfl.ch/mod/assign/view.php?id=1269436) (one submission per group).
 
 ### To Go Further
 
