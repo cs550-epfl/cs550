@@ -53,7 +53,13 @@ object Lab05 extends lisa.Main {
     }
 
     val joinAbsorption = Theorem((x <= y) |- (x u y) === y) {
-        sorry //TODO
+        assume(x <= y)
+
+        // ((x u y) <= y) /\ (y <= (x u y)))  
+        val s1 = have((x u y) <= y) by Tautology.from(lub of (z := y), reflexivity of (x := y))
+        val s2 = have(y <= (x u y)) by Tautology.from(joinLowerBound)
+
+        have(thesis) by Tautology.from(s1, s2, antisymmetry of (x := y, y := (x u y)))
     }
 
     val meetUpperBound = Theorem(((x n y) <= x) /\ ((x n y) <= y)) {
