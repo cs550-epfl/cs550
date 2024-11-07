@@ -81,14 +81,14 @@ To see the material, please visit https://mediaspace.epfl.ch , log in with your 
 | -    | Thu | 24.10.2024 | 15:15 |        | Holidays | |
 |      |     |            | 17:15 |        | Holidays | |
 |      | Fri | 25.10.2024 | 13:15 |        | Holidays | |
-| 7    | Thu | 31.10.2024 | 15:15 | GRA330 | Lecture 8 [PDF](lectures/lec09-ai-fixpoint.pdf) | Abstract Interpration. Lattices. Tarski's fixpoint theorem |
+| 7    | Thu | 31.10.2024 | 15:15 | GRA330 | Lecture 9 [PDF](lectures/lec09-ai-fixpoint.pdf) | Abstract Interpration. Lattices. Tarski's fixpoint theorem |
 |      |     |            | 17:15 | GRA330 | Labs | |
 |      |     |            |       |        | | [Deadline to pick your project topic and Background Paper](project/README.md) |
 |      | Fri | 01.11.2024 | 13:15 | INR219 | [Exercises 6](exercises/Exercises6) | |
-| 8    | Thu | 07.11.2024 | 15:15 | GRA330 | | |
-|      |     |            | 17:15 | GRA330 | | |
+| 8    | Thu | 07.11.2024 | 15:15 | GRA330 | Lecture 10 [PDF](lectures/lec10-lattices-predicates.pdf) | Fixed Points. Predicates |
+|      |     |            | 17:15 | GRA330 | Labs | |
 |      |     |            |       |        | | [Deadline to write your Background Paper Review](project/README.md) |
-|      | Fri | 08.11.2024 | 13:15 | INR219 | | |
+|      | Fri | 08.11.2024 | 13:15 | INR219 | [Exercises 7](exercises/Exercises7/) |  |
 | 9    | Thu | 14.11.2024 | 15:15 | GRA330 | | |
 |      |     |            | 17:15 | GRA330 | | |
 |      | Fri | 15.11.2024 | 13:15 | INR219 | | |
