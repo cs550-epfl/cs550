@@ -82,7 +82,34 @@ object Lab05 extends lisa.Main {
 
 
     val joinAssociative = Theorem((x u (y u z)) === ((x u y) u z)) {
-        sorry //TODO
+        // Prove x u (y u z)) <= ((x u y) u z) 
+        val s1 = have((x u (y u z)) <= ((x u y) u z)) subproof {
+            // lub (z := (x u y) u z), y := (y u z)) gives ((x <= (x u y) u z)) /\ ((y u z) <= (x u y) u z))) <=> ((x u (y u z)) <= (x u y) u z))
+
+            // Show (x <= (x u y) u z))
+            val a = have(x <= (x u y)) by Tautology.from(joinLowerBound)
+            val b = have((x u y) <= ((x u y) u z)) by Tautology.from(joinLowerBound of (x := (x u y), y := z))
+            val x = have(x <= (x u y) u z) by Tautology.from(a, b, transitivity of (y := (x u y), z := (x u y) u z))
+
+            // Show (y u z) <= (x u y) u z))
+            // - show y <= (x u y) u z
+            // val y = 
+            
+            // - show z <= (x u y) u z
+            // val z = 
+            
+            // val yuz = have((y u z) <= (x u y) u z) by Tautology.from(y, z, lub of (x := y, y := z, z := (x u y) u z)))
+
+            // Show ((x u (y u z)) <= (x u y) u z))
+            // have(thesis) by Tautology.from(x, yuz, lub of (y := (y u z), z := (x u y) u z))
+        }
+
+        // Prove ((x u y) u z) <= x u (y u z)
+        // val s2 = have(((x u y) u z) <= x u (y u z)) subproof {
+
+        // }
+
+        // have(thesis) by Tautology.from(s1, s2, antisymmetry of (x := x u (y u z), y := ((x u y) u z)))
     }
 
     //Tedious, isn't it
