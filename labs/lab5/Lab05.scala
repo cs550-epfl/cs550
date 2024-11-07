@@ -182,84 +182,85 @@ object Lab05 extends lisa.Main {
                                     return proof.InvalidProofTactic("The inequality is not true in general")
 
                             //3. left is a meet, right is a join. In that case, we try all pairs.
-                            case (n(a: Term, b: Term), u(c: Term, d: Term)) => 
-                                val ac = solve(a <= c)
-                                val ad = solve(a <= d)
-                                val bc = solve(b <= c)
-                                val bd = solve(b <= d)
+                            case (n(a: Term, b: Term), u(c: Term, d: Term)) =>
+                                val ac = Try(solve(a <= c)).toOption
+                                val ad = Try(solve(a <= d)).toOption
+                                val bc = Try(solve(b <= c)).toOption
+                                val bd = Try(solve(b <= d)).toOption
 
-                                if !ac.isValid && !ad.isValid && !bc.isValid && !bd.isValid then
-                                    return proof.InvalidProofTactic("The inequality is not true in general")
-                                else if ac.isValid then
+                                if ac.isDefined then
                                     have(left <= right) by Tautology.from(
                                         meetUpperBound of (x:=a, y:=b), // (a n b) <= a
-                                        have(ac), // a <= c
+                                        have(ac.get), // a <= c
                                         transitivity of (x := (a n b), y := a, z := c), //  if ... then (a n b) <= c
                                         joinLowerBound of (x:=c, y:=d), // c <= (c u d)
                                         transitivity of (x := (a n b), y := c, z := (c u d)) // if ... then (a n b) <= (c u d)
                                     )
-                                else if ad.isValid then
+                                else if ad.isDefined then
                                     have(left <= right) by Tautology.from(
                                         meetUpperBound of (x := a, y := b), // (a n b) <= a
-                                        have(ad), // a <= d
+                                        have(ad.get), // a <= d
                                         transitivity of (x := (a n b), y := a, z := d), //  if ... then (a n b) <= d
                                         joinLowerBound of (x := c, y := d), // d <= (c u d)
                                         transitivity of (x := (a n b), y := d, z := (c u d)) // if ... then (a n b) <= (c u d)
                                     )
-                                else if bc.isValid then
+                                else if bc.isDefined then
                                     have(left <= right) by Tautology.from(
                                         meetUpperBound of (x := a, y := b), // (a n b) <= b
-                                        have(bc), // b <= c
+                                        have(bc.get), // b <= c
                                         transitivity of (x := (a n b), y := b, z := c), //  if ... then (a n b) <= c
                                         joinLowerBound of (x := c, y := d), // c <= (c u d)
                                         transitivity of (x := (a n b), y := c, z := (c u d)) // if ... then (a n b) <= (c u d)
                                     )
-                                else if bd.isValid then
+                                else if bd.isDefined then
                                     have(left <= right) by Tautology.from(
                                         meetUpperBound of (x := a, y := b), // (a n b) <= b
-                                        have(bd), // b <= d
+                                        have(bd.get), // b <= d
                                         transitivity of (x := (a n b), y := b, z := d), //  if ... then (a n b) <= d
                                         joinLowerBound of (x := c, y := d), // d <= (c u d)
                                         transitivity of (x := (a n b), y := d, z := (c u d)) // if ... then (a n b)
                                     )
+                                else 
+                                    proof.InvalidProofTactic("The inequality is not true in general")
                             //4. left is a meet, right is a variable or unknown term.
                             case (n(a: Term, b: Term), _) =>
-                                val s1 = solve(a <= right)
-                                val s2 = solve(b <= right)
-                                if s1.isValid then
+                                val s1 = Try(solve(a <= right)).toOption
+                                val s2 = Try(solve(b <= right)).toOption
+
+                                if s1.isDefined then
                                     have (left <= right) by Tautology.from(
-                                        have(s1), // a < right
+                                        have(s1.get), // a < right
                                         meetUpperBound of (x := a, y:= b), // (a n b) <= a
                                         transitivity of (x := (a n b), y := a, z := right)
                                     )
-                                else if s2.isValid then
+                                else if s2.isDefined then
                                     have (left <= right) by Tautology.from(
-                                        have(s2), // b < right
+                                        have(s2.get), // b < right
                                         meetUpperBound of (x:= a, y:= b), // (a n b) <= b
                                         transitivity of (x := (a n b), y := b, z := right)
                                     )
                                 else
                                     proof.InvalidProofTactic("The inequality is not true in general")
-
-
                             //5. left is a variable or unknown term, right is a join.
                             case (_, u(c: Term, d: Term)) =>
-                                val s1 = solve(left <= c)
-                                val s2 = solve(left <= d)
-                                if !s1.isValid && !s2.isValid then
-                                    proof.InvalidProofTactic("The inequality is not true in general")
-                                else if s1.isValid then
+                                val s1 = Try(solve(left <= c)).toOption
+                                val s2 = Try(solve(left <= d)).toOption
+                           
+                                    
+                                if s1.isDefined then
                                     have (left <= right) by Tautology.from(
-                                        have(s1), // left <= c
+                                        have(s1.get), // left <= c
                                         joinLowerBound of (x := c, y := d), // c <= (c u d)
                                         transitivity of (x := left, y := c, z := right) // if ... then left <= right
                                     )
-                                else if s2.isValid then
+                                else if s2.isDefined then
                                     have (left <= right) by Tautology.from(
-                                        have(s2), // left <= d
+                                        have(s2.get), // left <= d
                                         joinLowerBound of (x := c, y := d), // d <= (c u d)
                                         transitivity of (x := left, y := d, z := right) // if ... then left <= right
                                     )
+                                else 
+                                    proof.InvalidProofTactic("The inequality is not true in general")
                             //6. left and right are variables or unknown terms.
                             case _ =>
                                 if left == right then
@@ -291,9 +292,9 @@ object Lab05 extends lisa.Main {
     val test1 = Theorem(x <= x) {
         have(thesis) by Whitman.solve
     }
-    // val test2 = Theorem(x <= (x u y)) {
-    //     have(thesis) by Whitman.solve
-    // }
+    val test2 = Theorem(x <= (x u y)) {
+        have(thesis) by Whitman.solve
+    }
     val test3 = Theorem((y n x) <= x) {
         have(thesis) by Whitman.solve
     }
