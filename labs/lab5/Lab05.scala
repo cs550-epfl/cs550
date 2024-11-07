@@ -63,15 +63,21 @@ object Lab05 extends lisa.Main {
     }
 
     val meetUpperBound = Theorem(((x n y) <= x) /\ ((x n y) <= y)) {
-        sorry //TODO
+        have (thesis) by Tautology.from(glb of (z:= (x n y)), reflexivity of (x := (x n y)))
     }
 
     val meetCommutative = Theorem((x n y) === (y n x)) {
-        sorry //TODO
+        val s1 = have ((y n x) <= (x n y)) by Tautology.from(glb of (z := (y n x)), meetUpperBound of (x := y, y := x))
+        have (thesis) by Tautology.from(s1, s1 of (x:=y, y:=x), antisymmetry of (x := x n y, y := y n x))
     }
 
     val meetAbsorption = Theorem((x <= y) |- (x n y) === x) {
-        sorry //TODO
+        assume(x <= y)
+
+        // ((x n y) <= x) /\ (x <= (x n y)))  
+        val s1 = have(x <= (x n y)) by Tautology.from(glb of (z := x), reflexivity)
+        val s2 = have((x n y) <= x) by Tautology.from(meetUpperBound)
+        have (thesis) by Tautology.from(s1, s2, antisymmetry of (x := x, y := (x n y)))
     }
 
 
