@@ -1,3 +1,13 @@
+| Lab | Branch |
+| --- | ---    |
+| 1 | [`lab1`](https://github.com/cs550-epfl/cs550/tree/lab1/labs/lab1) |
+| 2 | [`lab2`](https://github.com/cs550-epfl/cs550/tree/lab2/labs/lab2) |
+| 3 | [`lab3`](https://github.com/cs550-epfl/cs550/tree/lab3/labs/lab3) |
+| 4 | [`lab4`](https://github.com/cs550-epfl/cs550/tree/lab4/labs/lab4) |
+| 5 | [`lab5`](https://github.com/cs550-epfl/cs550/tree/lab5/labs/lab5) |
+
+---
+
 # EPFL CS550 - Formal Verification
 
 [Moodle](https://moodle.epfl.ch/course/view.php?id=13051), [Coursebook](https://edu.epfl.ch/coursebook/en/formal-verification-CS-550?cb_cycle=bama_cyclemaster&cb_section=in)
